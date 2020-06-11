@@ -1,0 +1,239 @@
+@font-face {
+	font-family: "BigNoodleTitlingCyr";
+	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot");
+	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg");
+}
+
+@font-face {
+	font-family: "Industry Medium";
+	src: url("../../fonts/Industry-Medium.ttf");
+}
+
+@font-face {
+	font-family: "Haymaker";
+	src: url("../../fonts/Haymaker.ttf");
+}
+
+.video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: scale(1.3);
+	z-index: -200;
+	filter: brightness(60%) hue-rotate(60deg);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Haymaker;
+	color: white;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+
+p{
+	margin: 0;
+	padding: 0;
+}
+
+#container{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.head{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-family: "Haymaker";
+	font-size: 36pt;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.head__octologo {
+	height: 110px;
+	justify-self: flex-start;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 30px;
+	top: -5px;
+}
+
+.head__vs{
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+
+.head__vs-handler{
+	margin: 0;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #000;
+}
+
+.head__vs-sub{
+	font-size: 12pt;
+	margin: 0;
+}
+
+
+
+.score {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	border: 1px solid black;
+}
+
+.score__left, .score__right{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.score__num-handler, .score__num{
+	background-color: #26314a;
+	font-size: 36pt;
+	font-family: Haymaker;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.score__logo{
+	height: 250px;
+}
+
+.score__logo-handler {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 36pt;
+}
+
+.bottom{
+	display: flex;
+	flex-direction: row;
+	width: 90%;
+	height: 200px;
+	justify-content: space-between;
+	align-items: center;
+	font-family: Haymaker;
+}
+
+.bottom__info {
+	height: 90%;
+	width: 15%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.bottom__caster-header {
+	color: #CF7E44;
+	font-size: 18pt;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.maps {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 90%;
+	width: 80%;
+}
+
+.maps__map {
+	width: 17%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border: 1px solid black;
+	text-align: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+}
+
+.map__type-handler{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: rgba(50,50,50,1);
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.map__type{
+	font-family: Haymaker;
+	font-size: 14pt;
+	margin-left: 10px;
+}
+
+.map__icon {
+	height: 14pt;
+	filter: invert(100%);
+	margin: 3px 0 0 0;
+	padding: 0;
+}
+
+.map__name {
+	width: 100%;
+	font-size: 10pt;
+	background-color: rgba(50,50,50,1);
+	border-bottom: 2px solid lightgray;
+	color: orange;
+}
+
+.maps__winner{
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	position: relative;
+}
+
+.maps__map-score {
+	position: absolute;
+	font-size: 36pt;
+	display: none;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #000;
+}

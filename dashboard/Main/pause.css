@@ -1,0 +1,155 @@
+@font-face {
+	src: url("../../fonts/Montserrat-Medium.ttf");
+	font-family: Montserrat;
+}
+
+@font-face {font-family: "BigNoodleTitlingCyr"; src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot"); src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg"); }
+
+
+body{
+	margin:0;
+	padding:0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+}
+
+input[type=text] {
+	width: 200px;
+	border: 1px solid black;
+	border-radius: 7px;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+	padding-left: 5px;
+	font-size: 18pt;
+}
+
+input[type=number] {
+	width: 45px;
+	padding-left: 5px;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+	border: 1px solid black;
+	border-radius: 7px;
+	padding-right: 5px;
+	font-size: 14pt;
+}
+
+input[type=color] {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	border-radius: 7px;
+}
+
+select, option {
+	width: 110px;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+	border: 1px solid black;
+	border-radius: 7px;
+	font-size: 14pt;
+}
+
+option {
+	font-size: 10pt;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+button {
+	font-size: 20pt;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+}
+#vs{
+	font-size: 26pt;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+	color: #A33B3B;
+}
+.header-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 90%;
+	margin-top: 5px;
+}
+.header-info input{
+	text-align: center;
+}
+
+.name-color {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	width: 80%;
+}
+
+.teams {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 90%;
+	margin-top: 5px;
+}
+
+.team {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 45%;
+}
+
+.img-container {
+	width: 100px;
+	height: 100px;
+}
+
+.mapscopes{
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	margin-top: 10px;
+}
+
+.mapscope {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.buttons {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.update {
+	border: 1px solid #5280D9;
+	border-radius: 7px;
+	background-color: #5280D9;
+	color: white;
+	transition: .1s ease-in-out;
+}
+
+.update:hover {
+	color: #5280D9;
+	background-color: white;
+}
+
+.update:active {
+	color: #525e78;
+	background-color: #8D8E91;
+}
+
+

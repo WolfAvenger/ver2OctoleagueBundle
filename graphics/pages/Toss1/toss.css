@@ -1,0 +1,116 @@
+@font-face {
+	font-family: "BigNoodleTitlingCyr";
+	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot"); src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg");
+}
+
+
+body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	justify-content: space-between;
+	align-items: center;
+	color: black;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	/*min-width: 100%;*/
+	/*min-height: 100%;*/
+	width: 100%;
+	min-height: 100%;
+	transform: scale(1.3);
+	z-index: -200;
+}
+
+.header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	font-family: "BigNoodleTitlingCyr", serif;
+	font-size: 28pt;
+}
+
+.chosen, .group {
+	width: 40%;
+	text-align: left;
+	font-size: 34pt;
+}
+
+.group-a p, .group-b p{
+	font-size: 34pt;
+}
+
+.group {width: auto;}
+
+.groups-handler{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 75%;
+}
+
+.group-a, .group-b{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: flex-start;
+	width: 45%;
+	height: 70%;
+	font-family: "BigNoodleTitlingCyr", serif;
+	font-size: 26pt;
+	text-align: center;
+}
+.group-a .team {
+	flex-direction: row-reverse;
+}
+
+.team {
+	width: 100%;
+	height: 16.6%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	border: 1px solid white;
+	background-color: #432948;
+	color: white;
+}
+
+.logodiv {
+	width: 20%;
+	height: 70%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.logodiv img {
+	/*width: 100%;*/
+	height: 120px;
+	padding: 0 5px;
+}
+
+
+.team-name {
+	margin:0 5%;
+	font-family: "BigNoodleTitlingCyr", serif;
+	font-size: 26pt;
+}
+
+.group-a>p{
+	align-self: flex-end;
+}
+
+.color {
+	width: 6px;
+	height: 2.5em;
+}

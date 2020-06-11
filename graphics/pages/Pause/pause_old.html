@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pause screen</title>
+	<link rel="stylesheet" href="shower_old.css">
+	<script src="https://kit.fontawesome.com/5991e93572.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<video autoplay muted loop id="myVideo">
+	<source src="/ver2/bg" type="video/mp4">
+</video>
+<div class="bg" style="width: 101%; height:100%; background-color:rgba(76, 0, 128,0.5); z-index: -100; position: absolute;"></div>
+
+<div id="top">
+	<p class="stage-name">STAGE INFO</p>
+	<div class="caster">
+		<i class="fas fa-headset"></i>
+		<p class="caster-name">
+			THERE WILL BE NICK OF CASTER!</p>
+	</div>
+</div>
+<div id="middle">
+	<div class="team-left">
+		<p class="score-left"></p>
+		<p class="teamname-left"></p>
+		<img src="" alt="" class="logo-left">
+	</div>
+	<canvas class="webcam">
+
+	</canvas>
+	<div class="team-right">
+		<p class="score-right"></p>
+		<p class="teamname-right"></p>
+		<img src="" alt="" class="logo-right">
+	</div>
+</div>
+<div id="bottom">
+	<div class="map">
+		<div class="map-img">
+			<p class="map-score"></p>
+			<div class="top-map-cont">
+				<p class="map-type">CONTROL</p>
+				<div>
+					<img src="../../images/icons/control.png" alt="" class="type-icon">
+					<p class="map-name"></p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="map">
+		<div class="map-img">
+			<p class="map-score"></p>
+			<div class="top-map-cont">
+				<p class="map-type">ASSAULT</p>
+				<div>
+					<img src="../../images/icons/assault.png" alt="" class="type-icon">
+					<p class="map-name"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="map">
+		<div class="map-img" >
+			<p class="map-score"></p>
+			<div class="top-map-cont">
+				<p class="map-type">HYBRID</p>
+				<div>
+					<img src="../../images/icons/hybrid.png" alt="" class="type-icon">
+					<p class="map-name"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="map">
+		<div class="map-img" >
+			<p class="map-score"></p>
+			<div class="top-map-cont">
+				<p class="map-type">ESCORT</p>
+				<div>
+					<img src="../../images/icons/escort.png" alt="" class="type-icon">
+					<p class="map-name"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="map">
+		<div class="map-img">
+			<p class="map-score"></p>
+			<div class="top-map-cont">
+				<p class="map-type">CONTROL</p>
+				<div>
+					<img src="../../images/icons/control.png" alt="" class="type-icon">
+					<p class="map-name"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="setPause.js"></script>
+</body>
+</html>

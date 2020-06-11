@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+@font-face {font-family: "BigNoodleTitlingCyr"; src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot"); src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg"); }
+
+
+/*
+body{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	font-family: BigNoodleTitlingCyr, sans-serif;
+	margin: 1px 0;
+	padding: 0;
+	border: 1px solid red;
+	width: 100%;
+}
+
+.plank-handler{
+	width: 100%;
+	height: 100%;
+}
+
+.plank-handler > .plank-logo {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+}
+
+.team {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	width: 45%;
+	height: 100%;
+}
+
+.team-a {
+	justify-content: flex-start;
+}
+.team-b {
+	justify-content: flex-end;
+}
+.mid {
+	width: 10%;
+}
+
+
+*/
+
+body{
+	margin:0;
+	padding:0;
+	font-family: "BigNoodleTitlingCyr", serif;
+	/*position: relative;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+img {
+	position: absolute;
+	top: 5%;
+	height: 90%;
+	width: auto;
+}
+#logo-a{
+	left: 25%;
+}
+#logo-b{
+	right: 25%;
+}
+
+.svg-handler{
+	width: 94%;
+	height: 67px;
+	background-image: url("/my-first-bundle/planks/ingame-full");
+	background-size: 100% 100%;/*cover;*/
+	background-repeat: no-repeat;
+	position: absolute;
+}
+
+.team{
+	position: absolute;
+	display: flex;
+	align-items: center;
+}
+.team-a{
+	flex-direction: row;
+	justify-content: flex-start;
+	top:0;
+	left: 0;
+}
+.team-b{
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	top:0;
+	right:0;
+}
+
+.teamname{
+	font-size: 24pt;
+	width: 9.5em;
+	text-align: center;
+	position: absolute;
+	top: -12%;
+}
+
+.teamname-left{
+	/*margin-left: 16%;*/
+	left: 70px;
+}
+
+.teamname-right{
+	/*margin-right: 16%;*/
+	right: 70px;
+}
+
+.score {
+	position: absolute;
+	top: -48%;
+	font-size: 32pt;
+}
+
+.score-right{
+	right: 32%;
+}
+
+.score-left{
+	left: 32%;
+}
+
+.stage{
+	position: absolute;
+	left: 50%;
+	top: -35%;
+	transform: translateX(-50%);
+	color: white;
+	font-size: 22pt;
+	letter-spacing: 2px;
+}

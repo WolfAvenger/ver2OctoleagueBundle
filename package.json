@@ -1,0 +1,53 @@
+{
+  "name": "ver2",
+  "version": "2.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Simon Gurin",
+    "email": "semen.gurin@mail.ru",
+    "url": "none"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "panel-pause",
+        "title": "Pause Screen",
+        "width": 5,
+        "file": "Main/pause.html",
+        "headerColor": "#5C5F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "pages/Ingame/ingame.html",
+        "width": 1280,
+        "height": 720,
+        "name": "ingame"
+      },
+      {
+        "file": "pages/Pause/pause.html",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "file": "pages/Pregame/pregame.html",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "private": true
+}
