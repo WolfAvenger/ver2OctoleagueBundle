@@ -1,5 +1,5 @@
 {
-  "name": "ver2",
+  "name": "ver2OctoleagueBundle",
   "version": "2.0.0",
   "description": "",
   "homepage": "",
@@ -46,8 +46,25 @@
         "width": 1280,
         "height": 720
       }
+    ],
+    "assetCategories": [
+      {
+        "name": "logos",
+        "title": "Team's logos",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "maps",
+        "title": "Maps images",
+        "allowedTypes": ["jpg"]
+      },
+      {
+        "name": "teams-colors",
+        "title": "Teams & colors",
+        "allowedTypes": ["json"]
+      }
     ]
   },
-  "repository": "https://github.com/nodecg/nodecg.git",
+  "repository": "https://github.com/WolfAvenger/ver2OctoleagueBundle.git",
   "private": true
 }

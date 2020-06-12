@@ -8,7 +8,7 @@ nodecg.listenFor('pauseData', async function (data) {
 
 	for (let i = 0; i< data.maps.length; i++){
 		document.getElementsByClassName('maps__map')[i]
-			.style.backgroundImage = `url("/ver2/map/${data.maps[i].name}")`;
+			.style.backgroundImage = `url("/ver2OctoleagueBundle/map/${data.maps[i].name}")`;
 
 		console.log(data.maps[i].score1)
 

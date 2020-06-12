@@ -1,23 +1,11 @@
-const colors = {
-	"Carpe Diem": "#8347c1",
-	"Press W": "#ff1c26",
-	"F30" : "#620404",
-	"KnivesOut": "#ff551b",
-	"Modern Renegades": "#fffaff",
-	"Phoenix" : "#ff9705",
-	"Team Useless Tongue": "#ff4ba1",
-	"Truly Cake": "#383838",
-	"White Dragon": "#7f7f7f",
-	"Tale Quale": "#1349a8",
-	"Cura te ipsum": "#f2bf28",
-	"Oniel": "#8191aa",
-	"Strike Champagne": "#4d7a43",
-	"Svintus.PRO": "#eb7007",
-	"Memento Mori": "#75a6e0",
-	"OCTAHOR": "#8d6e3f",
-	"Fire of Mercy": "#ad481b",
-	"Team Fury": "#a69700"
-};
+async function receiveColors(){
+	const req = await fetch('/ver2OctoleagueBundle/colors-json', {method: "GET"});
+	return await req.json();
+}
+
+let colors;
+receiveColors()
+	.then(res => colors = res);
 
 function obtainData(){
 	let data = {
@@ -43,7 +31,6 @@ function obtainData(){
 		let s2 = document.getElementsByClassName('score')[i*2+1].value;
 		let map = document.getElementsByClassName('maps')[i];
 		map = map.options[map.selectedIndex].text;
-		console.log(map);
 		data.maps.push({
 			name: map, score1:s1, score2:s2
 		});
@@ -66,14 +53,12 @@ function obtainData(){
 	team_b = team_b.options[team_b.selectedIndex].text;
 
 	data.team_a.name = team_a;
-	data.team_a.logo = `/ver2/teamImg/${team_a}`;
+	data.team_a.logo = `/ver2OctoleagueBundle/teamImg/${team_a}`;
 	data.team_b.name = team_b;
-	data.team_b.logo = `/ver2/teamImg/${team_b}`;
+	data.team_b.logo = `/ver2OctoleagueBundle/teamImg/${team_b}`;
 
 	data.casters = document.getElementsByClassName('castername')[0].value;
 	data.subtext = document.getElementsByClassName('stage')[0].value;
-
-	//nodecg.sendMessage("pauseData", data);
 
 	nodecg.sendMessage('pauseData', data);
 
@@ -82,11 +67,10 @@ function obtainData(){
 
 function setIMG(elem){
 	var className = elem.className;
-	console.log(className);
 	var teamName = document.getElementsByClassName(className)[0];
 	teamName = teamName.options[teamName.selectedIndex].text;
 	var imgDOM = document.getElementsByClassName(className+'-img')[0];
-	imgDOM.src =  `/ver2/teamImg/${teamName}`;
+	imgDOM.src =  `/ver2OctoleagueBundle/teamImg/${teamName}`;
 
 	let rgba = colors[teamName];
 	document.getElementById(`colorpicker-${className}`).value = rgba;
@@ -97,9 +81,6 @@ function switchSides(data, onreverse){
 		teams: [NaN, NaN],
 		score: [NaN, NaN]
 	};
-	console.log(data.info.teams);
-	console.log(data.info.score);
-	console.log(onreverse);
 	if (!onreverse){
 		res.teams = data.info.teams;
 		res.score = data.info.score;

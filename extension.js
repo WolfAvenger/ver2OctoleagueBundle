@@ -1,18 +1,26 @@
 'use strict';
-const colors = require('./colors.json');
+const colors = require('../../assets/ver2OctoleagueBundle/teams-colors/colors.json');
+const path = require('path');
+
+function getReplByName(replicant, name, ext='.png'){
+	for (let elem of replicant.__value){
+		if (elem.name === name && elem.ext === ext){
+			return elem;
+		}
+	}
+	return undefined;
+}
 
 module.exports = function (nodecg) {
-	/*nodecg.log.info('Hello, from your bundle\'s extension!');
-	nodecg.log.info('I\'m where you put all your server-side code.');
-	nodecg.log.info(`To edit me, open "${__filename}" in your favorite text editor or IDE.`);
-	nodecg.log.info('You can use any libraries, frameworks, and tools you want. There are no limits.');
-	nodecg.log.info('Visit https://nodecg.com for full documentation.');
-	nodecg.log.info('Good luck!');*/
-
 	const router = nodecg.Router();
 
+	var logos = nodecg.Replicant('assets:logos');
+	var maps = nodecg.Replicant('assets:maps');
+
 	router.get('/teamImg/:imgTeam', (req, res) => {
-		res.sendFile(`./graphics/images/logos/${req.params.imgTeam}.png`, {root: __dirname});
+		//res.sendFile(`./graphics/images/logos/${req.params.imgTeam}.png`, {root: __dirname});
+		let img = getReplByName(logos, req.params.imgTeam);
+		res.sendFile(`.${img.url}`, {root: path.join(__dirname, '../..')});
 	});
 
 	router.get('/bg', (req, res) => {
@@ -32,8 +40,15 @@ module.exports = function (nodecg) {
 	});
 
 	router.get('/map/:map', (req, res) => {
-		res.sendFile(`./graphics/images/maps/${req.params.map}.jpg`, {root: __dirname});
+		//res.sendFile(`./graphics/images/maps/${req.params.map}.jpg`, {root: __dirname});
+		let img = getReplByName(maps, req.params.map, '.jpg');
+		res.sendFile(`.${img.url}`, {root: path.join(__dirname, '../..')});
 	});
 
-	nodecg.mount('/ver2', router); // The route '/my-bundle/customroute` is now available
+	router.get('/colors-json', (req, res) =>{
+		console.log(colors);
+		res.send(colors);
+	});
+
+	nodecg.mount('/ver2OctoleagueBundle', router); // The route '/my-bundle/customroute` is now available
 };

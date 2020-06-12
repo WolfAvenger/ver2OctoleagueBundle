@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-for="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Pause Screen</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="setPause.js"></script>
 	<link rel="stylesheet" href="pause.css">
 </head>
@@ -12,6 +13,8 @@
 	<input type="text" class="stage" placeholder="Stage text">
 </div>
 
+<div id="container">
+
 <div class="teams">
 	<div class="team">
 		<div class="img-container">
@@ -20,24 +23,7 @@
 		<div class="name-color">
 			<select onchange='setIMG(this)' name="" class="team-a">
 				<option value="" disabled selected>Select team</option>
-				<option value="">Carpe Diem</option>
-				<option value="">Cura te ipsum</option>
-				<option value="">Fire of Mercy</option>
-				<option value="">F30</option>
-				<option value="">KnivesOut</option>
-				<option value="">Memento Mori</option>
-				<option value="">Modern Renegades</option>
-				<option value="">OCTAHOR</option>
-				<option value="">Oniel</option>
-				<option value="">Phoenix</option>
-				<option value="">Press W</option>
-				<option value="">Strike Champagne</option>
-				<option value="">Svintus.PRO</option>
-				<option value="">Tale Quale</option>
-				<option value="">Team Fury</option>
-				<option value="">Team Useless Tongue</option>
-				<option value="">Truly Cake</option>
-				<option value="">White Dragon</option>
+				<option v-for="team in teams" value="">{{team}}</option>
 			</select>
 			<input type="color" class="colorpicker" id="colorpicker-team-a">
 		</div>
@@ -51,24 +37,7 @@
 			<input type="color" class="colorpicker" id="colorpicker-team-b">
 			<select onchange='setIMG(this)' name="" class="team-b">
 				<option value="" disabled selected>Select team</option>
-				<option value="">Carpe Diem</option>
-				<option value="">Cura te ipsum</option>
-				<option value="">Fire of Mercy</option>
-				<option value="">F30</option>
-				<option value="">KnivesOut</option>
-				<option value="">Memento Mori</option>
-				<option value="">Modern Renegades</option>
-				<option value="">OCTAHOR</option>
-				<option value="">Oniel</option>
-				<option value="">Phoenix</option>
-				<option value="">Press W</option>
-				<option value="">Strike Champagne</option>
-				<option value="">Svintus.PRO</option>
-				<option value="">Tale Quale</option>
-				<option value="">Team Fury</option>
-				<option value="">Team Useless Tongue</option>
-				<option value="">Truly Cake</option>
-				<option value="">White Dragon</option>
+				<option v-for="team in teams" value="">{{team}}</option>
 			</select>
 		</div>
 	</div>
@@ -78,64 +47,40 @@
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select name="" class="maps">
-			<option value="TBD" selected>control</option>
-			<option value="Busan">Busan</option>
-			<option value="Ilios">Ilios</option>
-			<option value="Lijiang Tower">Lijiang Tower</option>
-			<option value="Nepal">Nepal</option>
-			<option value="Oasis">Oasis</option>
+			<option v-for="map in control" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select class="maps">
-			<option value="TBD" selected>assault</option>
-			<option value="Hanamura">Hanamura</option>
-			<option value="Horizon LC">Horizon Lunar Colony</option>
-			<option value="Paris">Paris</option>
-			<option value="Anubis Temple">Anubis Temple</option>
-			<option value="Volskaya Inc">Volskaya Industries</option>
+			<option v-for="map in assault" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select class="maps">
-			<option value="TBD" selected>hybrid</option>
-			<option value="Blizzard world">Blizzard World</option>
-			<option value="Eichenwalde">Eichenwalde</option>
-			<option value="Hollywood">Hollywood</option>
-			<option value="Kings Row">King's Row</option>
-			<option value="Numbani">Numbani</option>
+			<option v-for="map in hybrid" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select class="maps">
-			<option value="TBD" selected>escort</option>
-			<option value="Dorado">Dorado</option>
-			<option value="Junkertown">Junkertown</option>
-			<option value="Rialto">Rialto</option>
-			<option value="Route 66">Route 66</option>
-			<option value="Watchpoint Gibraltar">Watchpoint Gibraltar</option>
-			<option value="Havana">Havana</option>
+			<option v-for="map in escort" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select name="" class="maps">
-			<option value="TBD" selected>control</option>
-			<option value="Busan">Busan</option>
-			<option value="Ilios">Ilios</option>
-			<option value="Lijiang Tower">Lijiang Tower</option>
-			<option value="Nepal">Nepal</option>
-			<option value="Oasis">Oasis</option>
+			<option v-for="map in control" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
+</div>
+
 </div>
 
 <script>let onswitch = false; let tempData;</script>
@@ -145,5 +90,30 @@
 	<button class="update" onclick="switchSides(obtainData(), onswitch);">update ingame</button>
 	<input type="checkbox" class="reversed" onclick="onswitch = !onswitch">
 </div>
+
+<script>
+	let App = new Vue({
+		el: '#container',
+		data: {
+			teams: [],
+			n_stages: 0,
+			control: ['control', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis'],
+			assault: ['assault', 'Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries'],
+			hybrid: ['hybrid', 'Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani'],
+			escort: ['escort', 'Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar'],
+			n5: [this.control, this.assault, this.hybrid, this.escort, this.control],
+			n7: [this.control, this.assault, this.hybrid, this.escort, this.hybrid, this.assault, this.control]
+		},
+		methods: {
+			getTeams: async function(){
+				const req = await fetch('/ver2OctoleagueBundle/colors-json', {method: "GET"});
+				let data = await req.json();
+				return Object.keys(data);
+			}
+		}
+	});
+
+	App.getTeams().then(res => App.teams = res);
+</script>
 </body>
 </html>
