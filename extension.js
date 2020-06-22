@@ -1,6 +1,6 @@
 'use strict';
-const colors = require('../../assets/ver2OctoleagueBundle/teams-colors/colors.json');
 const path = require('path');
+const fs = require('fs');
 
 function getReplByName(replicant, name, ext='.png'){
 	for (let elem of replicant.__value){
@@ -16,6 +16,7 @@ module.exports = function (nodecg) {
 
 	var logos = nodecg.Replicant('assets:logos');
 	var maps = nodecg.Replicant('assets:maps');
+	var colors = nodecg.Replicant('assets:teams-colors');
 
 	router.get('/teamImg/:imgTeam', (req, res) => {
 		//res.sendFile(`./graphics/images/logos/${req.params.imgTeam}.png`, {root: __dirname});
@@ -46,8 +47,7 @@ module.exports = function (nodecg) {
 	});
 
 	router.get('/colors-json', (req, res) =>{
-		console.log(colors);
-		res.send(colors);
+		res.sendFile(`.${colors.__value[0].url}`, {root: path.join(__dirname, '../..')})
 	});
 
 	nodecg.mount('/ver2OctoleagueBundle', router); // The route '/my-bundle/customroute` is now available

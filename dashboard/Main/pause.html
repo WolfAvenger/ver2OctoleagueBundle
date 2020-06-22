@@ -108,7 +108,8 @@
 			getTeams: async function(){
 				const req = await fetch('/ver2OctoleagueBundle/colors-json', {method: "GET"});
 				let data = await req.json();
-				return Object.keys(data);
+				console.log(Object.keys(data).sort());
+				return Object.keys(data).sort();
 			}
 		}
 	});

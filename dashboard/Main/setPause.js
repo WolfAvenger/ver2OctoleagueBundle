@@ -65,7 +65,7 @@ function obtainData(){
 	return data;
 }
 
-function setIMG(elem){
+async function setIMG(elem){
 	var className = elem.className;
 	var teamName = document.getElementsByClassName(className)[0];
 	teamName = teamName.options[teamName.selectedIndex].text;
@@ -74,6 +74,8 @@ function setIMG(elem){
 
 	let rgba = colors[teamName];
 	document.getElementById(`colorpicker-${className}`).value = rgba;
+	App.getTeams().then(res => App.teams = res);
+	console.log(teamName, colors[teamName])
 }
 
 function switchSides(data, onreverse){
