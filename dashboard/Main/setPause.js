@@ -79,20 +79,15 @@ async function setIMG(elem){
 }
 
 function switchSides(data, onreverse){
-	let res = {
-		teams: [NaN, NaN],
-		score: [NaN, NaN]
-	};
-	if (!onreverse){
-		res.teams = data.info.teams;
-		res.score = data.info.score;
+	let res = data;
+	if (onreverse){
+		[res.team_a, res.team_b] = [res.team_b, res.team_a]
+		for (let i = 0; i < res.maps.length; i++){
+			[res.maps.score1, res.maps.score2] = [res.maps.score2, res.maps.score1]
+		}
 	}
-	else {
-		res.teams = data.info.teams.reverse();
-		res.score = data.info.score.reverse();
-	}
-	res.stage = data.info.stage;
 
-	nodecg.sendMessage('ingame', res);
+	nodecg.sendMessage('ingame', res).then(r => {
+		console.log('ingame sent!')});
 }
 

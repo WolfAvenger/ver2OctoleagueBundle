@@ -54,14 +54,14 @@
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select class="maps">
-			<option v-for="map in assault" value="">{{map}}</option>
+			<option v-for="map in hybrid" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
 	<div class="mapscope">
 		<input type="number" class="score" min="0">
 		<select class="maps">
-			<option v-for="map in hybrid" value="">{{map}}</option>
+			<option v-for="map in assault" value="">{{map}}</option>
 		</select>
 		<input type="number" class="score" min="0">
 	</div>
@@ -85,10 +85,13 @@
 
 <script>let onswitch = false; let tempData;</script>
 
-<div class="buttons">
+<div class="buttons" style="width: 70%; display:flex;flex-direction: row; align-items: center">
 	<button class="update" onclick="obtainData()">Update pause</button>
 	<button class="update" onclick="switchSides(obtainData(), onswitch);">update ingame</button>
-	<input type="checkbox" class="reversed" onclick="onswitch = !onswitch">
+	<label>
+		<input type="checkbox" class="reversed" onclick="onswitch = !onswitch">
+		<span style="color:white">Switch sides</span>
+	</label>
 </div>
 
 <script>
@@ -97,10 +100,10 @@
 		data: {
 			teams: [],
 			n_stages: 0,
-			control: ['control', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis'],
-			assault: ['assault', 'Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries'],
-			hybrid: ['hybrid', 'Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani'],
-			escort: ['escort', 'Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar'],
+			control: ['TBD', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis'],
+			assault: ['TBD', 'Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries'],
+			hybrid: ['TBD', 'Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani'],
+			escort: ['TBD', 'Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar'],
 			n5: [this.control, this.assault, this.hybrid, this.escort, this.control],
 			n7: [this.control, this.assault, this.hybrid, this.escort, this.hybrid, this.assault, this.control]
 		},
@@ -108,7 +111,6 @@
 			getTeams: async function(){
 				const req = await fetch('/ver2OctoleagueBundle/colors-json', {method: "GET"});
 				let data = await req.json();
-				console.log(Object.keys(data).sort());
 				return Object.keys(data).sort();
 			}
 		}

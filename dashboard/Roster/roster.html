@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Team Roster</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="roster.css">
+</head>
+<body>
+<div id="container">
+	<select name="team" id="select" class="select" onchange="App.getPlayersByTeam(this.value);
+															document.querySelectorAll('input.player').forEach(elem => {
+															elem.checked = false;})">
+		<option value="" disabled selected>Select team</option>
+		<option v-for="team in teams" :value="team">{{team}}</option>
+	</select>
+
+	<div class="players">
+		<div>
+		<label v-for="player in players">
+			<input type="checkbox" class="player">
+			<span class="player-btag">{{player.BTag}}</span>
+		</label>
+		</div>
+	</div>
+
+	<button class="show" onclick="App.setUpRoster()">Show</button>
+
+	<span id="output"></span>
+
+</div>
+
+<script>
+	var App = new Vue({
+		el: '#container',
+		data: {
+			teams: [],
+			players: []
+		},
+		methods:{
+			getTeams: async function(){
+				const req = await fetch('/ver2OctoleagueBundle/teamlist', {method: "GET"});
+				let data = await req.json();
+				return data.data;
+			},
+			getPlayersByTeam: async function(team){
+				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
+				let data = await req.json();
+				this.players = data.data;
+			},
+			setUpRoster: async function(){
+				let checks = document.querySelectorAll('input.player')
+				let tags = document.querySelectorAll('span.player-btag')
+				let data = {data: []}
+				checks.forEach((elem,index) => {
+					if (elem.checked) data.data.push(tags[index].innerHTML)
+				})
+				const req = await fetch('/ver2OctoleagueBundle/roster', {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+						// 'Content-Type': 'application/x-www-form-urlencoded',
+					}})
+				let res = await req.json();
+				res = res.data;
+
+				nodecg.sendMessage('roster', res).then(r => console.log('roster sent!'));
+			}
+		}
+	});
+
+	App.getTeams().then(res => App.teams = res);
+
+</script>
+</body>
+</html>

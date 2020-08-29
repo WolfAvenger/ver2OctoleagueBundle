@@ -14,7 +14,7 @@
 
 <div class="video">
 	<video autoplay="" muted="" loop="" id="myVideo">
-		<source src="/ver2OctoleagueBundle/bg" type="video/mp4">
+		<source src="/ver2OctoleagueBundle/bg" type="video/mp4" >
 	</video>
 </div>
 
@@ -23,8 +23,8 @@
 	<div class="head">
 		<img src="/ver2OctoleagueBundle/octologo" alt="" class="head__octologo">
 		<div class="head__vs">
-			<p class="head__vs-handler">{{team_a.name}} vs. {{team_b.name}}</p>
-			<p class="head__vs-sub">{{subtext}}</p>
+			<p class="head__vs-handler">{{subtext}}</p>
+<!--			<p class="head__vs-sub">{{team_a.name}} vs. {{team_b.name}}</p>-->
 		</div>
 	</div>
 
@@ -70,24 +70,24 @@
 			</div>
 			<div class="maps__map">
 				<div class="map__type-handler">
-					<img src="../../images/icons/assault.png" alt="" class="map__icon">
-					<p class="map__type">Assault</p>
+					<img src="../../images/icons/hybrid.png" alt="" class="map__icon">
+					<p class="map__type">Hybrid</p>
 				</div>
 				<p class="map__name">{{maps[1].name}}</p>
 				<div class="maps__winner">
 					<p class="maps__map-score">{{maps[1].score1}}:{{maps[1].score2}}</p>
 				</div>
-
 			</div>
 			<div class="maps__map">
 				<div class="map__type-handler">
-					<img src="../../images/icons/hybrid.png" alt="" class="map__icon">
-					<p class="map__type">Hybrid</p>
+					<img src="../../images/icons/assault.png" alt="" class="map__icon">
+					<p class="map__type">Assault</p>
 				</div>
 				<p class="map__name">{{maps[2].name}}</p>
 				<div class="maps__winner">
 					<p class="maps__map-score">{{maps[2].score1}}:{{maps[2].score2}}</p>
 				</div>
+
 			</div>
 			<div class="maps__map">
 				<div class="map__type-handler">

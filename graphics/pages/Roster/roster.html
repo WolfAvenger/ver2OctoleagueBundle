@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Roster Screen</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./roster.js"></script>
+</head>
+<body>
+<div class="video">
+	<video autoplay="" muted="" loop="" id="myVideo">
+		<source src="/ver2OctoleagueBundle/bg" type="video/mp4" >
+	</video>
+</div>
+
+<div id="container">
+	<div class="top">
+
+	</div>
+	<div class="mid">
+		<template v-for="player in players">
+			<div class="tag-role">
+				<span class="btag">{{player.BTag}}</span>
+				<img :src="player.Role" alt="" class="role">
+			</div>
+		<span class="name">{{player.Name}}</span>
+		</template>
+	</div>
+	<div class="bottom">
+		<img :src="players[0].Team" alt="" class="teamIcon">
+		<span class="teamName">{{players[0].Team}}</span>
+	</div>
+</div>
+<script>
+	let App = new Vue({
+		el: '#container',
+		data: {
+			players: []
+		}
+	})
+</script>
+</body>
+</html>

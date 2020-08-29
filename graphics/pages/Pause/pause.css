@@ -58,12 +58,13 @@ p{
 
 .head{
 	width: 100%;
+	height: 15%;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	font-family: "Haymaker";
-	font-size: 36pt;
+	font-size: 42pt;
 	margin: 0;
 	padding: 0;
 	position: relative;
@@ -92,14 +93,14 @@ p{
 }
 
 .head__vs-sub{
-	font-size: 12pt;
-	margin: 0;
+	font-size: 16pt;
 }
 
 
 
 .score {
-	width: 90%;
+	width: 95%;
+	height: 50%;
 	display: flex;
 	flex-direction: row;
 	border: 1px solid black;
@@ -107,6 +108,7 @@ p{
 
 .score__left, .score__right{
 	width: 50%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -115,20 +117,27 @@ p{
 
 .score__num-handler, .score__num{
 	background-color: #26314a;
-	font-size: 36pt;
+	font-size: 48pt;
 	font-family: Haymaker;
 	width: 100%;
 	padding: 0;
 	margin: 0;
 	text-align: center;
 }
+.score__num-handler {
+	height: 15%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
 
 .score__logo{
-	height: 250px;
+	height: 80%;
 }
 
 .score__logo-handler {
 	width: 100%;
+	height: 85%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -139,8 +148,8 @@ p{
 .bottom{
 	display: flex;
 	flex-direction: row;
-	width: 90%;
-	height: 200px;
+	width: 95%;
+	height: 25%;
 	justify-content: space-between;
 	align-items: center;
 	font-family: Haymaker;
@@ -157,10 +166,14 @@ p{
 
 .bottom__caster-header {
 	color: #CF7E44;
-	font-size: 18pt;
+	font-size: 26pt;
 	width: 100%;
 	text-align: center;
 	margin-bottom: 5px;
+}
+
+.bottom__caster-name{
+	font-size: 23pt;
 }
 
 .maps {
@@ -200,12 +213,12 @@ p{
 
 .map__type{
 	font-family: Haymaker;
-	font-size: 14pt;
+	font-size: 20pt;
 	margin-left: 10px;
 }
 
 .map__icon {
-	height: 14pt;
+	height: 20pt;
 	filter: invert(100%);
 	margin: 3px 0 0 0;
 	padding: 0;
@@ -213,7 +226,7 @@ p{
 
 .map__name {
 	width: 100%;
-	font-size: 9pt;
+	font-size: 13pt;
 	background-color: rgba(50,50,50,1);
 	border-bottom: 2px solid lightgray;
 	color: orange;
