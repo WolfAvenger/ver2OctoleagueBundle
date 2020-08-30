@@ -1,0 +1,133 @@
+@font-face {
+	font-family: "BigNoodleTitlingCyr";
+	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot");
+	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg");
+}
+
+@font-face {
+	font-family: "Industry Medium";
+	src: url("/ver2OctoleagueBundle/font/Industry-Medium");
+}
+
+@font-face {
+	font-family: "Haymaker";
+	src: url("/ver2OctoleagueBundle/font/Haymaker");
+}
+
+@font-face {
+	font-family: "TT Lakes Compressed";
+	src: url("/ver2OctoleagueBundle/font/TTLakesCompressed-Medium");
+}
+
+.video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: scale(1.3);
+	z-index: -200;
+	filter: brightness(60%) hue-rotate(60deg);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+body{
+	margin:0;
+	padding:0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+#container {
+	width: 90vw;
+	height: 75vh;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	display: none;
+}
+
+.players {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 90%;
+}
+
+.player {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: stretch;
+	color: white;
+	height: 100%;
+	width: calc(100%/6);
+}
+
+.character {
+	width: 100%;
+	height: 80%;
+}
+
+.info {
+	background-color: black;
+	color: white;
+	font-family: "TT Lakes Compressed", serif;
+	width: 100%;
+	height: 20%;
+	border-left: 4px solid white;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.btag-role{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 22pt;
+	margin-left: 5px;
+	height: 50%;
+}
+
+.captain {
+	color: #CF7E44;
+	font-size: 12pt;
+	align-self: flex-start;
+	margin-left: 4px;
+}
+
+.role {
+	margin-left: 8px;
+	height: 50%;
+	width: auto;
+}
+
+.name {
+	margin-left: 5px;
+	color: #8D8E91;
+	font-size: 14pt;
+}
+
+.bottom {
+	color: white;
+	font-family: "TT Lakes Compressed", serif;
+	font-size: 32pt;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height: 10%;
+	width: 100%;
+	border-top: 1px solid white;
+}

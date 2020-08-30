@@ -18,6 +18,7 @@ module.exports = function (nodecg) {
 	var logos = nodecg.Replicant('assets:logos');
 	var maps = nodecg.Replicant('assets:maps');
 	var colors = nodecg.Replicant('assets:teams-colors');
+	var roleicons = nodecg.Replicant('assets:role-icons');
 
 	router.get('/teamImg/:imgTeam', (req, res) => {
 		//res.sendFile(`./graphics/images/logos/${req.params.imgTeam}.png`, {root: __dirname});
@@ -70,14 +71,22 @@ module.exports = function (nodecg) {
 		let json = await api.getPlayerByBTag(arr);
 		json = json.map(elem => elem = {
 			BTag: elem.BTag,
+			Nick: elem.BTag.split('#')[0],
 			Roles: elem.Roles.split(', '),
 			Mains: elem.Mains.split(', '),
 			Name: elem.Name === '' ? "Unknown name" : elem.Name,
-			isCap: elem.isCaptain === "Да"
+			isCap: elem.isCaptain === "Да",
+			Team: elem.Team
 		});
 		api.setUpRoster(json)
 			.then(r => res.json({data:r}));
 
+	});
+
+	router.get('/role/:role', (req, res) => {
+		let img = getReplByName(roleicons, req.params.role, '.png');
+		console.log(img)
+		res.sendFile(`.${img.url}`, {root: path.join(__dirname, '../..')});
 	})
 
 	nodecg.mount('/ver2OctoleagueBundle', router); // The route '/my-bundle/customroute` is now available

@@ -16,6 +16,7 @@ async function getPlayersByTeam(team){
 	result = result.filter(elem => elem.Team === team);
 	result = result.map(elem => elem = {
 		BTag: elem.BTag,
+		Nick: elem.BTag.split('#')[0],
 		Roles: elem.Roles.split(', '),
 		Mains: elem.Mains.split(', '),
 		Name: elem.Name === '' ? "Unknown name" : elem.Name,

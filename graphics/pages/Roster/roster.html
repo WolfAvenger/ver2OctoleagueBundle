@@ -5,6 +5,8 @@
 	<title>Roster Screen</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="./roster.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<link rel="stylesheet" href="./roster.css">
 </head>
 <body>
 <div class="video">
@@ -14,28 +16,33 @@
 </div>
 
 <div id="container">
-	<div class="top">
-
-	</div>
-	<div class="mid">
-		<template v-for="player in players">
-			<div class="tag-role">
-				<span class="btag">{{player.BTag}}</span>
-				<img :src="player.Role" alt="" class="role">
+	<div class="players">
+		<div class="player" v-for="player in players">
+			<img :src="player.Hero" alt="" class="character">
+			<div class="info">
+				<div class="btag-role">
+					<span class="btag">{{player.Nick}}</span>
+					<span v-if="player.isCap" class="captain">★</span>
+					<img :src=`/ver2OctoleagueBundle/role/${role}` alt="" class="role"
+						 v-for="role in player.Roles">
+				</div>
+				<span class="name">{{player.Name}}</span>
+				<span v-if="player.isCap" class="captain">Team captain</span>
 			</div>
-		<span class="name">{{player.Name}}</span>
-		</template>
+		</div>
 	</div>
 	<div class="bottom">
 		<img :src="players[0].Team" alt="" class="teamIcon">
 		<span class="teamName">{{players[0].Team}}</span>
 	</div>
+
 </div>
 <script>
 	let App = new Vue({
 		el: '#container',
 		data: {
-			players: []
+			players: [],
+			color: ''
 		}
 	})
 </script>

@@ -32,6 +32,7 @@
         "name": "panel-team",
         "title": "Team Screen",
         "width": 3,
+        "height": 6,
         "file": "Roster/roster.html",
         "headerColor": "#5C5F78"
       }
@@ -74,6 +75,11 @@
         "name": "teams-colors",
         "title": "Teams & colors",
         "allowedTypes": ["json"]
+      },
+      {
+        "name": "role-icons",
+        "title": "Role Icons",
+        "allowedTypes": ["png"]
       }
     ]
   },
