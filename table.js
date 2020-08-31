@@ -9,20 +9,26 @@ async function init(){
 	sheet = doc.sheetsByIndex[1];
 }
 
-async function getPlayersByTeam(team){
-	let result;
-	await init();
-	result = await sheet.getRows();
-	result = result.filter(elem => elem.Team === team);
-	result = result.map(elem => elem = {
+function playerify(elem){
+	elem = {
 		BTag: elem.BTag,
 		Nick: elem.BTag.split('#')[0],
 		Roles: elem.Roles.split(', '),
 		Mains: elem.Mains.split(', '),
 		Name: elem.Name === '' ? "Unknown name" : elem.Name,
 		isCap: elem.isCaptain === "Да",
-		Team: elem.Team
-	});
+		Team: elem.Team,
+		ShowImage: elem.ShowImage
+	};
+	return elem;
+}
+
+async function getPlayersByTeam(team){
+	let result;
+	await init();
+	result = await sheet.getRows();
+	result = result.filter(elem => elem.Team === team);
+	result = result.map(elem => playerify(elem));
 	return result;
 }
 
@@ -31,6 +37,7 @@ async function getPlayerByBTag(btag){
 	await init();
 	result = await sheet.getRows();
 	result = result.filter(elem => btag.includes(elem.BTag));
+	result = result.map(elem => playerify(elem));
 	return result;
 }
 
@@ -67,6 +74,11 @@ async function setUpRoster(players){
 	players.forEach((elem, index) => {
 		elem.Hero = ret[index];
 	})
+
+	players.sort((a,b) => {
+		let priority = ['Flex', 'Tank', 'Offense', 'Support', 'Secret']
+		return priority.indexOf(a.Roles[0]) > priority.indexOf(b.Roles[0])
+	});
 	return players;
 }
 

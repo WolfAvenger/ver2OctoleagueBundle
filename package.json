@@ -40,19 +40,19 @@
     "graphics": [
       {
         "file": "pages/Ingame/ingame.html",
-        "width": 1280,
-        "height": 720,
+        "width": 1920,
+        "height": 1080,
         "name": "ingame"
       },
       {
         "file": "pages/Pause/pause.html",
-        "width": 1280,
-        "height": 720
+        "width": 1920,
+        "height": 1080
       },
       {
         "file": "pages/Pregame/pregame.html",
-        "width": 1280,
-        "height": 720
+        "width": 1920,
+        "height": 1080
       },
       {
         "file": "pages/Roster/roster.html",

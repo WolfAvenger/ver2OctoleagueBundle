@@ -7,6 +7,7 @@
 	<script src="./roster.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<link rel="stylesheet" href="./roster.css">
+	<link rel="preload" href="/ver2OctoleagueBundle/bg" as="video" type="video/mp4">
 </head>
 <body>
 <div class="video">
@@ -18,12 +19,12 @@
 <div id="container">
 	<div class="players">
 		<div class="player" v-for="player in players">
-			<img :src="player.Hero" alt="" class="character">
+			<img border="0" src="" alt="" class="character">
 			<div class="info">
 				<div class="btag-role">
 					<span class="btag">{{player.Nick}}</span>
-					<span v-if="player.isCap" class="captain">★</span>
-					<img :src=`/ver2OctoleagueBundle/role/${role}` alt="" class="role"
+<!--					<span v-if="player.isCap" class="captain">★</span>-->
+					<img border="0" :src=`/ver2OctoleagueBundle/role/${role}` alt="" class="role"
 						 v-for="role in player.Roles">
 				</div>
 				<span class="name">{{player.Name}}</span>

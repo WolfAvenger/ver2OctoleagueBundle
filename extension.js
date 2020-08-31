@@ -69,15 +69,6 @@ module.exports = function (nodecg) {
 	router.post('/roster', async (req, res) => {
 		let arr = req.body.data;
 		let json = await api.getPlayerByBTag(arr);
-		json = json.map(elem => elem = {
-			BTag: elem.BTag,
-			Nick: elem.BTag.split('#')[0],
-			Roles: elem.Roles.split(', '),
-			Mains: elem.Mains.split(', '),
-			Name: elem.Name === '' ? "Unknown name" : elem.Name,
-			isCap: elem.isCaptain === "Да",
-			Team: elem.Team
-		});
 		api.setUpRoster(json)
 			.then(r => res.json({data:r}));
 
@@ -85,7 +76,6 @@ module.exports = function (nodecg) {
 
 	router.get('/role/:role', (req, res) => {
 		let img = getReplByName(roleicons, req.params.role, '.png');
-		console.log(img)
 		res.sendFile(`.${img.url}`, {root: path.join(__dirname, '../..')});
 	})
 

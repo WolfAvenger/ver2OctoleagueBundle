@@ -47,10 +47,9 @@ body{
 #container {
 	width: 90vw;
 	height: 75vh;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	border: 1px solid black;
-	display: none;
 }
 
 .players {
@@ -75,6 +74,10 @@ body{
 .character {
 	width: 100%;
 	height: 80%;
+	display: block;
+	object-position: bottom center;
+	border: 1px solid black;
+	background-color: rgba(255,255,255,.7);
 }
 
 .info {
@@ -95,20 +98,21 @@ body{
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	font-size: 22pt;
+	font-size: 24pt;
 	margin-left: 5px;
 	height: 50%;
 }
 
 .captain {
 	color: #CF7E44;
-	font-size: 12pt;
+	font-size: 14pt;
 	align-self: flex-start;
 	margin-left: 4px;
 }
 
 .role {
 	margin-left: 8px;
+	margin-right: -8px;
 	height: 50%;
 	width: auto;
 }
@@ -116,7 +120,7 @@ body{
 .name {
 	margin-left: 5px;
 	color: #8D8E91;
-	font-size: 14pt;
+	font-size: 16pt;
 }
 
 .bottom {
@@ -130,4 +134,9 @@ body{
 	height: 10%;
 	width: 100%;
 	border-top: 1px solid white;
+}
+
+.teamIcon {
+	height: 97%;
+	margin-right: 40px;
 }

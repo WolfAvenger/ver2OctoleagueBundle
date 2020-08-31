@@ -21,7 +21,7 @@
 			<img class="team-a-img" src="" alt="">
 		</div>
 		<div class="name-color">
-			<select onchange='setIMG(this)' name="" class="team-a">
+			<select onclick="App.getTeams().then(r => App.teams = r)" onchange='setIMG(this)' name="" class="team-a">
 				<option value="" disabled selected>Select team</option>
 				<option v-for="team in teams" value="">{{team}}</option>
 			</select>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="name-color">
 			<input type="color" class="colorpicker" id="colorpicker-team-b">
-			<select onchange='setIMG(this)' name="" class="team-b">
+			<select onclick="App.getTeams().then(r => App.teams = r)" onchange='setIMG(this)' name="" class="team-b">
 				<option value="" disabled selected>Select team</option>
 				<option v-for="team in teams" value="">{{team}}</option>
 			</select>
@@ -109,9 +109,10 @@
 		},
 		methods: {
 			getTeams: async function(){
-				const req = await fetch('/ver2OctoleagueBundle/colors-json', {method: "GET"});
+				const req = await fetch('/ver2OctoleagueBundle/teamlist', {method: "GET"});
 				let data = await req.json();
-				return Object.keys(data).sort();
+				data = data.data;
+				return data;
 			}
 		}
 	});
