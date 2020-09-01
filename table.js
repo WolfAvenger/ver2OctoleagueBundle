@@ -2,11 +2,20 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 const creds = require('./creds.json')
 let sheet;
 
+function saveSheet(s){
+	s.getRows().then(r => sheet = r);
+}
+
+init().then(async (s) => {
+	setInterval(saveSheet,  10000, s);
+})
+
 async function init(){
 	const doc = new GoogleSpreadsheet('1NqH1uZsKIJ5cCsBAfaV4F5cIbrAEmgVbcvzECZFypJs');
 	await doc.useServiceAccountAuth(creds);
 	await doc.loadInfo();
 	sheet = doc.sheetsByIndex[1];
+	return sheet;
 }
 
 function playerify(elem){
@@ -25,29 +34,22 @@ function playerify(elem){
 
 async function getPlayersByTeam(team){
 	let result;
-	await init();
-	result = await sheet.getRows();
-	result = result.filter(elem => elem.Team === team);
+	result = sheet.filter(elem => elem.Team === team);
 	result = result.map(elem => playerify(elem));
 	return result;
 }
 
 async function getPlayerByBTag(btag){
 	let result;
-	await init();
-	result = await sheet.getRows();
-	result = result.filter(elem => btag.includes(elem.BTag));
+	result = sheet.filter(elem => btag.includes(elem.BTag));
 	result = result.map(elem => playerify(elem));
 	return result;
 }
 
 async function getTeams(){
 	let result;
-	await init()
-	result = await sheet.getRows();
-	result = new Set(result.map(elem => elem = elem.Team))
+	result = new Set(sheet.map(elem => elem.Team));
 	return result;
-
 }
 
 async function setUpRoster(players){
@@ -76,8 +78,10 @@ async function setUpRoster(players){
 	})
 
 	players.sort((a,b) => {
-		let priority = ['Flex', 'Tank', 'Offense', 'Support', 'Secret']
-		return priority.indexOf(a.Roles[0]) > priority.indexOf(b.Roles[0])
+		let priority = ['Flex', 'Tank', 'Offense', 'Support', 'Secret'];
+		let sw1 = priority.indexOf(a.Roles[0]) > priority.indexOf(b.Roles[0]);
+		let sw2 = priority.indexOf(a.Roles[0]) < priority.indexOf(b.Roles[0]);
+		return sw1 ? 1 : (sw2 ? -1 : 0);
 	});
 	return players;
 }

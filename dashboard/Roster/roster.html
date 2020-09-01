@@ -24,7 +24,9 @@
 		</div>
 	</div>
 
-	<button class="show" onclick="App.setUpRoster()">Update info</button>
+	<button class="show" onclick="App.setUpRoster();
+		document.querySelector('.fadeIn').disabled=true;
+		setTimeout(() => document.querySelector('.fadeIn').disabled=false, 4000)">Update info</button>
 	<button class="fadeIn" onclick="nodecg.sendMessage('roster-fadeIn')">Fade In</button>
 	<button class="fadeOut" onclick="nodecg.sendMessage('roster-fadeOut')">Fade Out</button>
 

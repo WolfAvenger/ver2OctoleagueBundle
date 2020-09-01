@@ -10,19 +10,21 @@ nodecg.listenFor('pauseData', async function (data) {
 		document.getElementsByClassName('maps__map')[i]
 			.style.backgroundImage = `url("/ver2OctoleagueBundle/map/${data.maps[i].name}")`;
 
-		if (data.maps[i].score1 && data.maps[i].score2){
-			let dom = document.getElementsByClassName('maps__winner')[i];
-			dom.style.backgroundColor = 'transparent';
+		let dom1 = document.getElementsByClassName('maps__winner')[i];
+		dom1.style.backgroundColor = 'transparent';
+		let dom2 = document.getElementsByClassName('maps__map-score')[i];
+		dom2.style.visibility = 'hidden';
+
+		if (data.maps[i].score1 !== "" && data.maps[i].score2 !== ""){
+
 			if (data.maps[i].score1 > data.maps[i].score2){
-				dom.style.backgroundColor = data.team_a.color;
+				dom1.style.backgroundColor = data.team_a.color;
 			}
 			else if (data.maps[i].score1 < data.maps[i].score2){
-				dom.style.backgroundColor = data.team_b.color;
+				dom1.style.backgroundColor = data.team_b.color;
 			}
 
-			dom = document.getElementsByClassName('maps__map-score')[i];
-			if (data.maps[i].score1 !== '')
-				dom.style.display = 'inline';
+			dom2.style.visibility = 'visible';
 		}
 	}
 
