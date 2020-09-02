@@ -72,7 +72,7 @@ async function setIMG(elem){
 	var imgDOM = document.getElementsByClassName(className+'-img')[0];
 	imgDOM.src =  `/ver2OctoleagueBundle/teamImg/${teamName}`;
 
-	let rgba = colors[teamName];
+	let rgba = colors[teamName].primary;
 	document.getElementById(`colorpicker-${className}`).value = rgba;
 	App.getTeams().then(res => App.teams = res);
 	console.log(teamName, colors[teamName])

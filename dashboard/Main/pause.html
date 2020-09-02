@@ -86,8 +86,8 @@
 <script>let onswitch = false; let tempData;</script>
 
 <div class="buttons" style="width: 70%; display:flex;flex-direction: row; align-items: center">
-	<button class="update" onclick="obtainData()">Update pause</button>
-	<button class="update" onclick="switchSides(obtainData(), onswitch);">update ingame</button>
+	<button style="display: none" class="update" onclick="obtainData()">Update pause</button>
+	<button class="update" onclick="switchSides(obtainData(), onswitch);">update data</button>
 	<label>
 		<input type="checkbox" class="reversed" onclick="onswitch = !onswitch">
 		<span style="color:white">Switch sides</span>

@@ -14,22 +14,34 @@ function blackWhiteText(bgColor, darkColor, lightColor) {
 	return (L > 0.179) ? darkColor : lightColor;
 }
 
+const heroesImg = {
+	'D.Va': 'https://vignette.wikia.nocookie.net/overwatch/images/d/dc/Dva_portrait.png/revision/latest?cb=20180319191247&path-prefix=ru',
+	'Zarya': "https://vignette.wikia.nocookie.net/overwatch/images/d/d1/Zarya_portrait.png/revision/latest?cb=20180319191802&path-prefix=ru",
+	'Orisa': 'https://vignette.wikia.nocookie.net/overwatch/images/f/f9/Orisa_portrait.png/revision/latest?cb=20180319191914&path-prefix=ru',
+	'Reinhardt': "https://overwatch.guide/wp-content/uploads/2016/05/reinhardt.png",
+	'Wrecking Ball': 'https://vignette.wikia.nocookie.net/overwatch/images/8/83/WreckingBall_portrait.png/revision/latest?cb=20190114232714',
+	'Roadhog': 'https://vignette.wikia.nocookie.net/overwatch/images/c/c9/%D0%A2%D1%83%D1%80%D0%B1%D0%BE%D1%81%D0%B2%D0%B8%D0%BD.png/revision/latest?cb=20200508131749&path-prefix=ru',
+	'Winston': 'https://vignette.wikia.nocookie.net/overwatch/images/4/42/Winston_portrait.png/revision/latest?cb=20180319191944&path-prefix=ru',
+	'Sigma': 'https://vignette.wikia.nocookie.net/overwatch/images/a/a0/%D0%A1%D0%B8%D0%B3%D0%BC%D0%B0.png/revision/latest?cb=20200517152157&path-prefix=ru'
+}
+
 nodecg.listenFor('roster', async function(data) {
 	App.players = data;
 	let color = await fetch('/ver2OctoleagueBundle/colors-json');
 	color = await color.json();
 	color = color[data[0].Team];
+	let primary = color.primary, secondary = color.secondary;
 	document.querySelector('.bottom')
-		.style.backgroundColor = color;
+		.style.backgroundColor = primary;
 	document.querySelector('span.teamName')
-		.style.color = blackWhiteText(color, '#fff', '#000');
+		.style.color = secondary;//blackWhiteText(color, '#fff', '#000');
 
 	document.querySelector('img.teamIcon')
 		.src = `/ver2OctoleagueBundle/teamImg/${data[0].Team}`
 
 	document.querySelectorAll('div.info')
 		.forEach(elem => {
-			elem.style.borderLeftColor = color;
+			elem.style.borderLeftColor = primary;
 		});
 
 	document.querySelectorAll('img.character').forEach((elem, index) => {
@@ -40,9 +52,14 @@ nodecg.listenFor('roster', async function(data) {
 			elem.style.objectFit = 'cover';
 		}
 		else {
-			elem.src = `/ver2OctoleagueBundle/teamImg/${data[index].Team}`;
-			elem.style.objectFit = 'contain';
-			elem.style.objectPosition = 'center';
+/*			if (data[index].Hero) {
+				elem.style.objectFit = 'cover';
+				elem.src = heroesImg[data[index].Hero];
+			} else {*/
+				elem.src = `/ver2OctoleagueBundle/teamImg/${data[index].Team}`;
+				elem.style.objectFit = 'contain';
+				elem.style.objectPosition = 'center';
+			 //}
 		}
 	});
 });

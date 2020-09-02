@@ -19,16 +19,17 @@
 <div id="container">
 	<div class="players">
 		<div class="player" v-for="player in players">
-			<img border="0" src="" alt="" class="character">
-			<div class="info">
-				<div class="btag-role">
-					<span class="btag">{{player.Nick}}</span>
-<!--					<span v-if="player.isCap" class="captain">★</span>-->
-					<img border="0" :src=`/ver2OctoleagueBundle/role/${role}` alt="" class="role"
-						 v-for="role in player.Roles">
+			<img src="" alt="" class="character">
+			<div class="info-handler">
+				<div class="info">
+					<div class="btag-role">
+						<span class="btag">{{player.Nick}}</span>
+						<img :src=`/ver2OctoleagueBundle/role/${role}` alt="" class="role"
+							 v-for="role in player.Roles">
+					</div>
+					<span class="name">{{player.Name}}</span>
+					<span v-if="player.isCap" class="captain">Team captain</span>
 				</div>
-				<span class="name">{{player.Name}}</span>
-				<span v-if="player.isCap" class="captain">Team captain</span>
 			</div>
 		</div>
 	</div>
