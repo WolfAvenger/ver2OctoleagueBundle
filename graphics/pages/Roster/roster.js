@@ -66,6 +66,10 @@ nodecg.listenFor('roster', async function(data) {
 
 nodecg.listenFor('roster-fadeIn', async function(data){
 	$('#container').fadeIn(600, () => console.log('faded'));
+/*	$('#container').animate({
+		opacity: 1, // animate slideUp
+		marginLeft: '-200px'
+	}, 'slow', 'linear');*/
 })
 
 nodecg.listenFor('roster-fadeOut', async function(data){
