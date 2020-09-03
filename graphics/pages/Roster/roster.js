@@ -26,6 +26,19 @@ const heroesImg = {
 }
 
 nodecg.listenFor('roster', async function(data) {
+	if (data[0].Team === 'LPG'){
+		let imagesURL = [
+			'https://drive.google.com/uc?export=view&id=1W4hEvmAzIe8ShHt7hmfcTVNQhnyBkD93',
+			'https://drive.google.com/uc?export=view&id=1dDHs9OhUy4JlP06b-VMwu8M2Lhn9YVnF',
+			'https://drive.google.com/uc?export=view&id=1tj5mxqgi_jld-C57rfWsH_QQv6oxccIo',
+			'https://drive.google.com/uc?export=view&id=1W3DQd3VLh4Jvdgp53ceeXxro7fAIwAsx',
+			'https://drive.google.com/uc?export=view&id=19F2ndL6vm5CYU5_v8XFGnvZ2zgqXORJJ',
+			'https://drive.google.com/uc?export=view&id=1SyMJfTK6yZVHBFoHzdQgCW-mmzo6fbVH'
+		]
+		data.forEach((elem, index) => {
+			data[index].ShowImage = imagesURL[index];
+		})
+	}
 	App.players = data;
 	let color = await fetch('/ver2OctoleagueBundle/colors-json');
 	color = await color.json();
@@ -43,6 +56,8 @@ nodecg.listenFor('roster', async function(data) {
 		.forEach(elem => {
 			elem.style.borderLeftColor = primary;
 		});
+
+
 
 	document.querySelectorAll('img.character').forEach((elem, index) => {
 		elem.style.objectFit = 'null';
