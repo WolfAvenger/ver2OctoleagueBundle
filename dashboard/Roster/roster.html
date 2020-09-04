@@ -8,11 +8,10 @@
 </head>
 <body>
 <div id="container">
-	<select name="team" id="select" class="select" onchange="App.getPlayersByTeam(this.value);
-															document.querySelectorAll('input.player').forEach(elem => {
+	<select name="team" id="select" class="select" onchange="document.querySelectorAll('input.player').forEach(elem => {
 															elem.checked = false;})">
 		<option value="" disabled selected>Select team</option>
-		<option v-for="team in teams" :value="team">{{team}}</option>
+		<option v-for="team in teams" :value="team" onclick="App.getPlayersByTeam(this.value);">{{team}}</option>
 	</select>
 
 	<div class="players">

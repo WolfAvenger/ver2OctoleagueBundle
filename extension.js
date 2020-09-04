@@ -63,7 +63,7 @@ module.exports = function (nodecg) {
 
 	router.get('/teamlist', (req,res) => {
 		api.getTeams()
-			.then(r => res.json({data: Array.from(r)}));
+			.then(r => res.json({data: Array.from(r).sort()}));
 	})
 
 	router.post('/roster', async (req, res) => {

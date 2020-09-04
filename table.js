@@ -75,7 +75,9 @@ async function setUpRoster(players){
 	}
 	players.forEach((elem, index) => {
 		elem.Hero = ret[index];
-	})
+		if (elem.ShowImage && elem.ShowImage.includes('drive.google.com'))
+			elem.ShowImage = elem.ShowImage.replace('open?', 'uc?export=view&');
+	});
 
 	players.sort((a,b) => {
 		let priority = ['Flex', 'Tank', 'Offense', 'Support', 'Secret'];
