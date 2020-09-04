@@ -21,9 +21,9 @@
 			<img class="team-a-img" src="" alt="">
 		</div>
 		<div class="name-color">
-			<select onclick="App.getTeams().then(r => App.teams = r)" onchange='setIMG(this)' name="" class="team-a">
+			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-a">
 				<option value="" disabled selected>Select team</option>
-				<option v-for="team in teams" value="">{{team}}</option>
+				<option v-for="team in teams" :value="team" onclick="setIMG(this)" class="team-a-name">{{team}}</option>
 			</select>
 			<input type="color" class="colorpicker" id="colorpicker-team-a">
 		</div>
@@ -35,9 +35,9 @@
 		</div>
 		<div class="name-color">
 			<input type="color" class="colorpicker" id="colorpicker-team-b">
-			<select onclick="App.getTeams().then(r => App.teams = r)" onchange='setIMG(this)' name="" class="team-b">
+			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-b">
 				<option value="" disabled selected>Select team</option>
-				<option v-for="team in teams" value="">{{team}}</option>
+				<option v-for="team in teams" value="" onclick="setIMG(this)" class="team-b-name">{{team}}</option>
 			</select>
 		</div>
 	</div>

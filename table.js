@@ -22,8 +22,8 @@ function playerify(elem){
 	elem = {
 		BTag: elem.BTag,
 		Nick: elem.BTag.split('#')[0],
-		Roles: elem.Roles.split(', '),
-		Mains: elem.Mains.split(', '),
+		Roles: elem.Roles.split(',').map(elem => elem.trim()),
+		Mains: elem.Mains.split(',').map(elem => elem.trim()),
 		Name: elem.Name === '' ? "Unknown name" : elem.Name,
 		isCap: elem.isCaptain === "Да",
 		Team: elem.Team,
