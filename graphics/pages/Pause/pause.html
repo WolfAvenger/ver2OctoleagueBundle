@@ -58,7 +58,23 @@
 			<p v-for="c in Join()" class="bottom__caster-name">{{c}}</p>
 		</div>
 		<div class="maps">
-			<div class="maps__map">
+			<template v-for="map in maps" :key="map.name">
+				<div class="maps__map"
+					 :style='{backgroundImage: `url("/ver2OctoleagueBundle/map/${map.name}")`,
+					 		width: `${90 / maps.length}%`}'>
+					<div class="map__type-handler" v-if="map.type">
+						<img :src=`../../images/icons/${map.type}.png` alt="" class="map__icon">
+						<p class="map__type">{{map.type}}</p>
+					</div>
+					<p class="map__name" v-if="map.type">{{map.name}}</p>
+					<div class="maps__winner">
+						<p class="maps__map-score" style="visibility: hidden;">{{map.score1}}:{{map.score2}}</p>
+					</div>
+				</div>
+			</template>
+
+
+<!--			<div class="maps__map">
 				<div class="map__type-handler">
 					<img src="../../images/icons/control.png" alt="" class="map__icon">
 					<p class="map__type">Control</p>
@@ -108,7 +124,7 @@
 				<div class="maps__winner">
 					<p class="maps__map-score" style="visibility: hidden;">{{maps[4].score1}}:{{maps[4].score2}}</p>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 
@@ -130,7 +146,7 @@
 				color: null,
 				score: null
 			},
-			maps: ["","","","",""],
+			maps: [],
 			casters: "",
 			subtext: null,
 		},
@@ -139,7 +155,9 @@
 				return this.casters.split(' ');
 			}
 		}
-	})
+	});
+
+	setInterval(vue.$forceUpdate, 500);
 </script>
 
 

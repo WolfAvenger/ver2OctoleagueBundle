@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-for="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Pause Screen</title>
@@ -43,42 +43,19 @@
 	</div>
 </div>
 
-<div class="mapscopes">
-	<div class="mapscope">
-		<input type="number" class="score" min="0">
-		<select name="" class="maps">
-			<option v-for="map in control" value="">{{map}}</option>
-		</select>
-		<input type="number" class="score" min="0">
-	</div>
-	<div class="mapscope">
-		<input type="number" class="score" min="0">
-		<select class="maps">
-			<option v-for="map in hybrid" value="">{{map}}</option>
-		</select>
-		<input type="number" class="score" min="0">
-	</div>
-	<div class="mapscope">
-		<input type="number" class="score" min="0">
-		<select class="maps">
-			<option v-for="map in assault" value="">{{map}}</option>
-		</select>
-		<input type="number" class="score" min="0">
-	</div>
-	<div class="mapscope">
-		<input type="number" class="score" min="0">
-		<select class="maps">
-			<option v-for="map in escort" value="">{{map}}</option>
-		</select>
-		<input type="number" class="score" min="0">
-	</div>
-	<div class="mapscope">
-		<input type="number" class="score" min="0">
-		<select name="" class="maps">
-			<option v-for="map in control" value="">{{map}}</option>
-		</select>
-		<input type="number" class="score" min="0">
-	</div>
+<div class="addMap" style="width:50%; display:flex; justify-content: center">
+	<select name="" id="maptype-select" class="mapType"> <!--v-model="mapType"-->
+		<option value="" disabled selected>Select map type</option>
+		<option value="control">control</option>
+		<option value="hybrid">hybrid</option>
+		<option value="assault">assault</option>
+		<option value="escort">escort</option>
+	</select>
+	<button style="font-size: 12pt;" onclick="let s = document.getElementById('maptype-select');
+	App.newMapscope(s.options[s.options.selectedIndex].text)">Add</button>
+</div>
+
+<div class="mapscopes" id="mapscopes">
 </div>
 
 </div>
@@ -99,13 +76,6 @@
 		el: '#container',
 		data: {
 			teams: [],
-			n_stages: 0,
-			control: ['TBD', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis'],
-			assault: ['TBD', 'Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries'],
-			hybrid: ['TBD', 'Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani'],
-			escort: ['TBD', 'Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar'],
-			n5: [this.control, this.assault, this.hybrid, this.escort, this.control],
-			n7: [this.control, this.assault, this.hybrid, this.escort, this.hybrid, this.assault, this.control]
 		},
 		methods: {
 			getTeams: async function(){
@@ -113,11 +83,41 @@
 				let data = await req.json();
 				data = data.data;
 				return data;
+			},
+			newMapscope: function(type){
+				let obj = {
+					data: function() {
+						switch (type){
+							case 'control':
+								return {maps:['TBD', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis']};
+							case 'assault':
+								return {maps:['TBD', 'Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries']};
+							case 'hybrid':
+								return {maps:['TBD', 'Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani']};
+							case 'escort':
+								return {maps:['TBD', 'Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar']}
+						}
+					},
+					props: ['maptype'],
+					template: `<div class="mapscope" style="position:relative;">
+			<input type="number" class="score" min="0">
+			<select class="maps">
+				<option v-for="map in maps" :value="map">{{ map }}</option>
+			</select>
+			<input type="number" class="score" min="0">
+			<button onclick="this.parentNode.parentNode.removeChild(this.parentNode)" style="font-size: 10pt; position:absolute; right:-50px;">✕</button>
+		</div>`
+				};
+				let Mapscope = Vue.extend(obj);
+				let elem = new Mapscope().$mount();
+				document.getElementById('mapscopes').appendChild(elem.$el);
 			}
-		}
+		},
 	});
 
 	App.getTeams().then(res => App.teams = res);
+
+
 </script>
 </body>
 </html>

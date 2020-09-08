@@ -1,14 +1,25 @@
+function sleepFor( sleepDuration ){
+	let now = new Date().getTime();
+	while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
+}
+
 nodecg.listenFor('pauseData', async function (data) {
 	/* Do stuff*/
+
+	for (let key of Object.keys(data)){
+		vue[key] = data[key];
+	}
 
 	document.getElementsByClassName('score__logo-handler')[0]
 		.style.backgroundColor = data.team_a.color;
 	document.getElementsByClassName('score__logo-handler')[1]
 		.style.backgroundColor = data.team_b.color;
 
-	for (let i = 0; i< data.maps.length; i++){
+	console.log(document.getElementsByClassName('maps__map'))
+	for (let i = 0; i < data.maps.length; i++){
+		console.log(i)
 		document.getElementsByClassName('maps__map')[i]
-			.style.backgroundImage = `url("/ver2OctoleagueBundle/map/${data.maps[i].name}")`;
+			.style.width = `${90 / data.maps.length}%`
 
 		let dom1 = document.getElementsByClassName('maps__winner')[i];
 		dom1.style.backgroundColor = 'transparent';

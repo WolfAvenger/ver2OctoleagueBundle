@@ -26,13 +26,28 @@ function obtainData(){
 		subtext: "",
 	};
 
-	for (let i=0; i<5; i++){
-		let s1 = document.getElementsByClassName('score')[i*2].value;
-		let s2 = document.getElementsByClassName('score')[i*2+1].value;
-		let map = document.getElementsByClassName('maps')[i];
+	let map_obj = {
+		control:['Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis'],
+		assault:['Anubis Temple', 'Hanamura', 'Horizon Lunar Colony', 'Paris', 'Volskaya Industries'],
+		hybrid:['Blizzard World', 'Eichenwalde', 'Hollywood', "King's Row", 'Numbani'],
+		escort:['Dorado', 'Junkertown', 'Havana', 'Rialto', 'Route 66', 'Watchpoint Gibraltar']
+	}
+
+	for (let i=0; i<document.querySelectorAll('.maps').length; i++){
+		console.log(document.querySelectorAll('.score')[i*2], document.querySelectorAll('.score')[i*2+1])
+		let s1 = document.querySelectorAll('.score')[i*2].value;
+		let s2 = document.querySelectorAll('.score')[i*2+1].value;
+		let map = document.querySelectorAll('.maps')[i];
 		map = map.options[map.selectedIndex].text;
+		let type;
+		for (let t of Object.keys(map_obj)){
+			if (map_obj[t].includes(map)){
+				type = t;
+				break;
+			}
+		}
 		data.maps.push({
-			name: map, score1:s1, score2:s2
+			name: map, score1:s1, score2:s2, type:type
 		});
 		s1 > s2 ? data.team_a.score++ : (s1 < s2 ? data.team_b.score++ : true);
 	}
@@ -88,7 +103,6 @@ function switchSides(data, onreverse){
 		}
 	}
 
-	nodecg.sendMessage('ingame', res).then(r => {
-		console.log('ingame sent!')});
+	nodecg.sendMessage('ingame', res);
 }
 
