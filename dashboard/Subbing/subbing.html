@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="container">
+	<select name="" id="team" class="teams" v-model="team">
+		<option value="" selected disabled>Select team</option>
+		<option v-for="team in teams" :value="team" onclick="App.getPlayersByTeam(this.value).then(res => {
+			App.players = res; console.log(res);
+		})">{{team}}</option>
+
+	</select>
+
+	<div class="players">
+		<select name="" id="player-in" class="in" v-model="In">
+			<option value="" disabled selected>Player in</option>
+			<option :value="player" v-for="player in players">{{player.Nick}}</option>
+		</select>
+		<select name="" id="player-out" class="out" v-model="Out">
+			<option value="" disabled selected>Player out</option>
+			<option :value="player" v-for="player in players">{{player.Nick}}</option>
+		</select>
+	</div>
+	<button class="trigger" onclick="
+		let send = {
+			team: App.team,
+			In: App.In,
+			Out: App.Out,
+			color: null
+		}
+		App.getColor(send.team).then(res => send.color = res);
+		nodecg.sendMessage('subbing',send)">Trigger</button>
+</div>
+
+<script>
+	let App = new Vue({
+		el: '#container',
+		data:{
+			teams:[],
+			players:[],
+			team: '',
+			In: '',
+			Out: '',
+		},
+		methods:{
+			getTeams: async function(){
+				const req = await fetch('/ver2OctoleagueBundle/teamlist', {method: "GET"});
+				let data = await req.json();
+				return data.data;
+			},
+			getPlayersByTeam: async function(team){
+				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
+				let data = await req.json();
+				return data.data;
+			},
+			getColor: async function(team){
+				const req = await fetch(`/ver2OctoleagueBundle/colors-json`, {method: "GET"});
+				let data = await req.json();
+				console.log(team)
+				return data[team];
+			}
+		}
+	});
+
+	App.getTeams().then(res => {
+		App.teams = res; console.log(res)});
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@font-face {
+	src: url("/ver2OctoleagueBundle/font/TTLakes-DemiBold");
+	font-family: "TT Lakes Demi Bold";
+}
+
+@keyframes fadein {
+	0% {width: 0; height: 0}
+	50% {width: 0; height: 180px;}
+	100% {width: 600px; height: 180px; opacity: 1;}
+}
+
+@keyframes fadeout {
+	0% {width: 600px; height: 180px;}
+	50% {width: 0; height: 180px;}
+	100% {width: 0; height: 0; opacity: 0;}
+}
+
+*{
+	margin: 0;
+	padding: 0;
+
+}
+
+.fadein {
+	animation: fadein .5s ease-in-out forwards;
+}
+
+.fadeout {
+	animation: fadeout .5s ease-in-out;
+}
+
+#substrate, #main {
+	width: 0;
+	height: 0;
+}
+
+#substrate {
+	background-color: darkviolet;
+	z-index: -10;
+	opacity: 1;
+}
+
+#main {
+	font-family: "TT Lakes Demi Bold", sans-serif;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+	color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: stretch;
+	align-items: center;
+	z-index: 10;
+}
+
+.logo {
+	width: 30%;
+	height: 95%;
+	object-fit: scale-down;
+	border-right: 2px solid black;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: stretch;
+	width: 70%;
+	margin-left: 10px;
+	margin-right: 15px;
+	opacity: 0;
+}
+
+#in, #out {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+	height: 40%;
+	width: 100%;
+	margin: 15px 0;
+}
+
+.player-in {
+	font-size: 24pt;
+	margin-left: 10px;
+}
+
+.player-out {
+	font-size: 16pt;
+	color: darkgray;
+	margin-left: calc(8pt + 10px);
+}
+
+.triangle {
+	width: 0;
+	height: 0;
+}
+
+.triangle-in {
+	border-bottom:20pt solid green;
+	border-left: 20pt solid transparent;
+	border-right: 20pt solid transparent;
+}
+
+.triangle-out {
+	border-top: 16pt solid red;
+	border-left: 16pt solid transparent;
+	border-right: 16pt solid transparent;
+}
