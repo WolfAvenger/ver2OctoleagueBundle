@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.val {width: 100px;}
+	</style>
+</head>
+<body>
+
+<div id="container">
+	<div class="select-players">
+		<div class="select-a">
+			<select name="" id="team-a" class="team team-a">
+				<option value="" selected disabled>Choose team A</option>
+				<option v-for="team in teams" :value="team"
+						onclick="App.getPlayersByTeam(this.value).then(res => {App.players_a = res;})">{{team}}</option>
+			</select>
+			<select name="" id="player-a" class=" player player-a" v-model="left.player">
+				<option value="" selected disabled> Choose player of team A</option>
+				<option v-for="player in players_a" :value="player" >{{player.Nick}}</option>
+			</select>
+		</div>
+
+		<div class="select-b">
+			<select name="" id="team-b" class="team team-b">
+				<option value="" selected disabled>Choose team B</option>
+				<option v-for="team in teams" :value="team"
+						onclick="App.getPlayersByTeam(this.value).then(res => {App.players_b = res})">{{team}}</option>
+			</select>
+			<select name="" id="player-b" class=" player player-b" v-model="right.player">
+				<option value="" selected disabled> Choose player of team B</option>
+				<option v-for="player in players_b" :value="player">{{player.Nick}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="stats">
+		<div class="disc" v-for="d of Object.keys(left.data)">
+			<input type="number" class="val val-left" v-model="left.data[d]">
+			<span class="disc-name">{{d}}</span>
+			<input type="number" class="val val-left" v-model="right.data[d]">
+		</div>
+		<button onclick="if (!App.left.player.ShowImage) App.left.player.ShowImage = noShowImage(App.left.player.Team)
+				if (!App.right.player.ShowImage) App.right.player.ShowImage = noShowImage(App.right.player.Team);				nodecg.sendMessage('pairstats',
+			{left:App.left, right: App.right})
+	.then(res => console.log({left:App.left, right: App.right}))">Send stats</button>
+	</div>
+
+
+</div>
+
+<script>
+	function noShowImage(team){
+		return `/ver2OctoleagueBundle/teamImg/${team}`;
+	}
+
+	let App = new Vue({
+		el: '#container',
+		data: {
+			teams: [],
+			players_a:[],
+			players_b:[],
+			left:{
+				player:{},
+				data:{
+					Eliminations: null,
+					"Final blows": null,
+					Deaths: null,
+					'Damage dealt': null,
+					'Damage received': null,
+					'Healing dealt': null,
+					'Healing received': null
+				}
+			},
+			right:{
+				player:{},
+				data:{
+					Eliminations: null,
+					"Final blows": null,
+					Deaths: null,
+					'Damage dealt': null,
+					'Damage received': null,
+					'Healing dealt': null,
+					'Healing received': null
+				}
+			}
+		},
+		methods:{
+			getTeams: async function(){
+				const req = await fetch('/ver2OctoleagueBundle/teamlist', {method: "GET"});
+				let data = await req.json();
+				return data.data;
+			},
+			getPlayersByTeam: async function(team){
+				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
+				let data = await req.json();
+				return data.data;
+			},
+		}
+	});
+
+	App.getTeams().then(res => {
+		App.teams = res; console.log(res)});
+</script>
+
+</body>
+</html>

@@ -43,6 +43,14 @@
         "height": 3,
         "file": "Subbing/subbing.html",
         "headerColor": "#5C5F78"
+      },
+      {
+        "name": "panel-comparing",
+        "title": "Compare panel",
+        "width": 3,
+        "height": 3,
+        "file": "Pairstats/pairstats.html",
+        "headerColor": "#5C5F78"
       }
     ],
     "graphics": [
@@ -71,6 +79,11 @@
         "file": "pages/Subbing/subbing.html",
         "width": 600,
         "height": 180
+      },
+      {
+        "file": "pages/Pairstats/pairstats.html",
+        "width": 1920,
+        "height": 1080
       }
     ],
     "assetCategories": [

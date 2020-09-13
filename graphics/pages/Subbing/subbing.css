@@ -35,7 +35,7 @@
 }
 
 #substrate {
-	background-color: darkviolet;
+	background-color: #26314a; /*#FFA500;*/
 	z-index: -10;
 	opacity: 1;
 }
@@ -58,7 +58,6 @@
 	width: 30%;
 	height: 95%;
 	object-fit: scale-down;
-	border-right: 2px solid black;
 }
 
 .info {
@@ -88,8 +87,7 @@
 }
 
 .player-out {
-	font-size: 16pt;
-	color: darkgray;
+	font-size: 18pt;
 	margin-left: calc(8pt + 10px);
 }
 
@@ -108,4 +106,5 @@
 	border-top: 16pt solid red;
 	border-left: 16pt solid transparent;
 	border-right: 16pt solid transparent;
+	margin-left: 2pt;
 }

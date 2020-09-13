@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pairstats</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="./pairstats.css">
+</head>
+<body>
+<div class="video">
+	<video autoplay="" muted="" loop="" id="myVideo">
+		<source src="/ver2OctoleagueBundle/bg" type="video/mp4" >
+	</video>
+</div>
+
+<div id="container">
+	<div class="top">
+		<div class="player player-left">
+			<div class="color-stick color-stick-left"></div>
+			<img :src="info.left.player.ShowImage" alt="" class="player-pic">
+			<div class="player-info">
+				<div class="nick-role">
+					<span class="nick">{{info.left.player.Nick}}</span>
+					<img :src=`/ver2OctoleagueBundle/role/${info.left.player.Roles[0]}` alt="" class="role">
+				</div>
+				<span class="name">{{info.left.player.Name}}</span>
+			</div>
+		</div>
+		<div class="player player-right">
+			<div class="color-stick color-stick-right"></div>
+			<img :src="info.right.player.ShowImage"  alt="" class="player-pic">
+			<div class="player-info">
+				<div class="nick-role">
+					<span class="nick">{{info.right.player.Nick}}</span>
+					<img :src=`/ver2OctoleagueBundle/role/${info.right.player.Roles[0]}` alt="" class="role">
+				</div>
+				<span class="name">{{info.right.player.Name}}</span>
+			</div>
+		</div>
+	</div>
+	<span class="mid">Stats gained from the last map</span>
+	<div class="stats">
+		<div class="disc" v-for="d in disc">
+			<div class="color-stick color-stick-left-stats"></div>
+			<span class="val val-left">{{info.left.data[d]}}</span>
+			<span class="disc-name">{{d}}</span>
+			<span class="val val-right">{{info.right.data[d]}}</span>
+			<div class="color-stick color-stick-right-stats"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	let App = new Vue({
+		el: "#container",
+		data: {
+			info:{
+				left: {
+					player:{
+						Nick: 'Nickname',
+						Name: 'Name text',
+						ShowImage: 'https://drive.google.com/uc?export=view&id=1A55KI06G4AvFliKChkdRAms6rsGSWK9p',
+						Role: 'Tank',
+					},
+					data:{
+						Eliminations: 1,
+						"Final blows": 2,
+						Deaths: 3,
+						'Damage dealt': 1000,
+						'Damage received': 1200,
+						'Healing dealt': 1400,
+						'Healing received': 1600
+					}
+				},
+				right: {
+					player:{
+						Nick: 'Nickname',
+						Name: 'Name text',
+						ShowImage: 'https://drive.google.com/uc?export=view&id=1A55KI06G4AvFliKChkdRAms6rsGSWK9p',
+						Role: 'Tank',
+					},
+					data:{
+						Eliminations: 1,
+						"Final blows": 2,
+						Deaths: 3,
+						'Damage dealt': 1000,
+						'Damage received': 1200,
+						'Healing dealt': 1400,
+						'Healing received': 1600
+					}
+				}
+			},
+			disc:['Eliminations', 'Final blows', 'Deaths',
+				'Damage dealt', 'Damage received',
+				'Healing dealt', 'Healing received'],
+		}
+	});
+
+	nodecg.listenFor('pairstats', async function(data) {
+		App.info = data;
+		let colors = await fetch('/ver2Octoleaguebundle/colors-json');
+		colors = await colors.json();
+		colors = [colors[data.left.player.Team].primary, colors[data.right.player.Team].primary]
+		console.log(colors);
+		document.querySelectorAll('.color-stick').forEach((elem, index) => {
+			elem.style.backgroundColor = colors[index % 2];
+		});
+		data.left.player.ShowImage = data.left.player.ShowImage.replace('open?', 'uc?export=view&');
+		data.right.player.ShowImage = data.right.player.ShowImage.replace('open?', 'uc?export=view&');
+	});
+</script>
+</body>
+</html>

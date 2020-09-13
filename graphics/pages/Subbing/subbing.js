@@ -33,7 +33,7 @@ nodecg.listenFor('subbing', async function(data) {
 	});
 	setTimeout(fadein, 50);
 	setTimeout(fadeout, 6000);
-	let info = document.querySelector('.info');
+	let info = document.querySelector('#main');
 	info.style.backgroundColor = data.color.primary;
 	info.style.color = data.color.secondary;
 });

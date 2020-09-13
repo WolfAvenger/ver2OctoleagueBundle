@@ -32,8 +32,10 @@
 			Out: App.Out,
 			color: null
 		}
-		App.getColor(send.team).then(res => send.color = res);
-		nodecg.sendMessage('subbing',send)">Trigger</button>
+		App.getColor(send.team).then(res => {
+			send.color = res.data;
+			nodecg.sendMessage('subbing',send)
+		});">Trigger</button>
 </div>
 
 <script>
@@ -60,8 +62,8 @@
 			getColor: async function(team){
 				const req = await fetch(`/ver2OctoleagueBundle/colors-json`, {method: "GET"});
 				let data = await req.json();
-				console.log(team)
-				return data[team];
+				console.log(team, data[team]);
+				return {data: data[team]};
 			}
 		}
 	});
