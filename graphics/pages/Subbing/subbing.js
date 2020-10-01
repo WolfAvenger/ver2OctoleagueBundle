@@ -26,6 +26,7 @@ function fadeout(){
 }
 
 nodecg.listenFor('subbing', async function(data) {
+	console.log(data)
 	document.querySelector('.logo').src = `/ver2OctoleagueBundle/teamImg/${data.team}`;
 	let arr = [data.In.Nick, data.Out.Nick];
 	document.querySelectorAll('.player').forEach((elem, index) => {

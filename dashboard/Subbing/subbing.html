@@ -4,14 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.teams {
+			width: 100%;
+		}
+		.players{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+		}
+		.in, .out {
+			width: 45%;
+		}
+	</style>
 </head>
 <body>
 <div id="container">
-	<select name="" id="team" class="teams" v-model="team">
+	<select name="" id="team" class="teams" v-model="team"
+			v-on:change="getPlayersByTeam(team)">
 		<option value="" selected disabled>Select team</option>
-		<option v-for="team in teams" :value="team" v-on:click="getPlayersByTeam(this.value).then(async (res) => {
-			players = res; await getColor(team); console.log(res);
-		})">{{team}}</option>
+		<option v-for="team in teams" :value="team">{{team}}</option>
 
 	</select>
 
@@ -25,7 +38,7 @@
 			<option :value="player" v-for="player in players">{{player.Nick}}</option>
 		</select>
 	</div>
-	<button class="trigger" v-on:click="sendNodeCG">Trigger</button>
+	<button class="trigger" v-on:click="sendNodeCG()">Trigger</button>
 </div>
 
 <script>
@@ -37,12 +50,7 @@
 			team: '',
 			In: '',
 			Out: '',
-			info: {
-				team: this.team,
-				In: this.In,
-				Out: this.Out,
-				color: ''
-			}
+			color: ''
 		},
 		methods:{
 			getTeams: async function(){
@@ -53,16 +61,27 @@
 			getPlayersByTeam: async function(team){
 				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
 				let data = await req.json();
-				return data.data;
+				this.players = data.data;
+				return this.players;
 			},
 			getColor: async function(){
 				const req = await fetch(`/ver2OctoleagueBundle/colors-json`, {method: "GET"});
 				let data = await req.json();
-				console.log(this.info.team, data[this.info.team]);
-				this.info.color = data[this.info.team];
+				console.log(this.team, data[this.team]);
+				this.color = data[this.team];
+				console.log(this.color)
 			},
 			sendNodeCG: function(){
-				nodecg.sendMessage('subbing', this.info);
+				this.getColor()
+				.then( res => {
+					nodecg.sendMessage('subbing', {
+						team: this.team,
+						In: this.In,
+						Out: this.Out,
+						color: this.color
+					});
+				})
+
 			}
 		}
 	});

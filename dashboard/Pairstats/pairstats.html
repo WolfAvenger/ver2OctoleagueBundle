@@ -32,9 +32,12 @@
 			align-items: center;
 			width: 100%;
 		}
-=======
-		.select-players{width:100%;
-			display: flex;flex-direction: row; justify-content: space-between;}
+		.select-players{
+			width:100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
 		.select-a, .select-b {
 			display: flex;
 			flex-direction: column;
@@ -50,7 +53,7 @@
 			display: flex;
 		flex-direction: row;
 			justify-content: space-between;}
->>>>>>> cb954065993d143208b1e46a1ce7dbd84bf7c8c6
+
 	</style>
 </head>
 <body>
@@ -58,10 +61,10 @@
 <div id="container">
 	<div class="select-players">
 		<div class="select-a">
-			<select name="" id="team-a" class="team team-a">
+			<select name="" id="team-a" class="team team-a" v-model="team_a"
+					v-on:change="getPlayersByTeam(team_a, false)">
 				<option value="" selected disabled>Choose team A</option>
-				<option v-for="team in teams" :value="team"
-						onclick="App.getPlayersByTeam(this.value).then(res => {App.players_a = res;})">{{team}}</option>
+				<option v-for="team in teams" :value="team">{{team}}</option>
 			</select>
 			<select name="" id="player-a" class=" player player-a" v-model="left.player">
 				<option value="" selected disabled> Choose player of team A</option>
@@ -70,10 +73,10 @@
 		</div>
 
 		<div class="select-b">
-			<select name="" id="team-b" class="team team-b">
+			<select name="" id="team-b" class="team team-b" v-model="team_b"
+					v-on:change="getPlayersByTeam(team_b, true)">
 				<option value="" selected disabled>Choose team B</option>
-				<option v-for="team in teams" :value="team"
-						onclick="App.getPlayersByTeam(this.value).then(res => {App.players_b = res})">{{team}}</option>
+				<option v-for="team in teams" :value="team">{{team}}</option>
 			</select>
 			<select name="" id="player-b" class=" player player-b" v-model="right.player">
 				<option value="" selected disabled> Choose player of team B</option>
@@ -105,6 +108,8 @@
 	let App = new Vue({
 		el: '#container',
 		data: {
+			team_a: "",
+			team_b: "",
 			teams: [],
 			players_a:[],
 			players_b:[],
@@ -139,10 +144,15 @@
 				let data = await req.json();
 				return data.data;
 			},
-			getPlayersByTeam: async function(team){
+			getPlayersByTeam: async function(team, bool){
 				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
 				let data = await req.json();
-				return data.data;
+				if (!bool){
+					this.players_a = data.data;
+				} else {
+					this.players_b = data.data;
+				}
+				return !bool ? this.players_a: this.players_b;
 			},
 		}
 	});

@@ -8,10 +8,11 @@
 </head>
 <body>
 <div id="container">
-	<select name="team" id="select" class="select" onchange="document.querySelectorAll('input.player').forEach(elem => {
+	<select name="team" id="select" class="select" v-model="team" v-on:change="getPlayersByTeam(team)"
+			onchange="document.querySelectorAll('input.player').forEach(elem => {
 															elem.checked = false;})">
 		<option value="" disabled selected>Select team</option>
-		<option v-for="team in teams" :value="team" onclick="App.getPlayersByTeam(this.value);">{{team}}</option>
+		<option v-for="team in teams" :value="team">{{team}}</option>
 	</select>
 
 	<div class="players">
@@ -38,7 +39,8 @@
 		el: '#container',
 		data: {
 			teams: [],
-			players: []
+			players: [],
+			team: ""
 		},
 		methods:{
 			getTeams: async function(){
@@ -47,9 +49,11 @@
 				return data.data;
 			},
 			getPlayersByTeam: async function(team){
+				console.log(this.team)
 				const req = await fetch(`/ver2OctoleagueBundle/players/${team}`, {method: "GET"});
 				let data = await req.json();
 				this.players = data.data;
+				return this.players;
 			},
 			setUpRoster: async function(){
 				let checks = document.querySelectorAll('input.player')
