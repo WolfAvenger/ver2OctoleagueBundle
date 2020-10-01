@@ -9,8 +9,8 @@
 <div id="container">
 	<select name="" id="team" class="teams" v-model="team">
 		<option value="" selected disabled>Select team</option>
-		<option v-for="team in teams" :value="team" onclick="App.getPlayersByTeam(this.value).then(res => {
-			App.players = res; console.log(res);
+		<option v-for="team in teams" :value="team" v-on:click="getPlayersByTeam(this.value).then(async (res) => {
+			players = res; await getColor(team); console.log(res);
 		})">{{team}}</option>
 
 	</select>
@@ -25,17 +25,7 @@
 			<option :value="player" v-for="player in players">{{player.Nick}}</option>
 		</select>
 	</div>
-	<button class="trigger" onclick="
-		let send = {
-			team: App.team,
-			In: App.In,
-			Out: App.Out,
-			color: null
-		}
-		App.getColor(send.team).then(res => {
-			send.color = res.data;
-			nodecg.sendMessage('subbing',send)
-		});">Trigger</button>
+	<button class="trigger" v-on:click="sendNodeCG">Trigger</button>
 </div>
 
 <script>
@@ -47,6 +37,12 @@
 			team: '',
 			In: '',
 			Out: '',
+			info: {
+				team: this.team,
+				In: this.In,
+				Out: this.Out,
+				color: ''
+			}
 		},
 		methods:{
 			getTeams: async function(){
@@ -59,11 +55,14 @@
 				let data = await req.json();
 				return data.data;
 			},
-			getColor: async function(team){
+			getColor: async function(){
 				const req = await fetch(`/ver2OctoleagueBundle/colors-json`, {method: "GET"});
 				let data = await req.json();
-				console.log(team, data[team]);
-				return {data: data[team]};
+				console.log(this.info.team, data[this.info.team]);
+				this.info.color = data[this.info.team];
+			},
+			sendNodeCG: function(){
+				nodecg.sendMessage('subbing', this.info);
 			}
 		}
 	});
