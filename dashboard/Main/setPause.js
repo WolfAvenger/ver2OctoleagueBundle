@@ -80,20 +80,6 @@ function obtainData(){
 	return data;
 }
 
-async function setIMG(elem){
-	var className = elem.className.replace('-name', '');
-	var teamName = document.getElementsByClassName(className)[0];
-	teamName = teamName.options[teamName.selectedIndex].text;
-	var imgDOM = document.getElementsByClassName(className+'-img')[0];
-	imgDOM.src =  `/ver2OctoleagueBundle/teamImg/${teamName}`;
-
-	let colors = await receiveColors();
-
-	document.getElementById(`colorpicker-${className}`).value = colors[teamName].primary;
-	App.getTeams().then(res => App.teams = res);
-	console.log(teamName, colors[teamName])
-}
-
 function switchSides(data, onreverse){
 	let res = data;
 	if (onreverse){

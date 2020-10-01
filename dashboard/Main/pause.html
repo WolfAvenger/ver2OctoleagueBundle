@@ -21,9 +21,9 @@
 			<img class="team-a-img" src="" alt="">
 		</div>
 		<div class="name-color">
-			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-a">
+			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-a" v-model="team_a" v-on:change="setIMG('team-a')">
 				<option value="" disabled selected>Select team</option>
-				<option v-for="team in teams" :value="team" onclick="setIMG(this)" class="team-a-name">{{team}}</option>
+				<option v-for="team in teams" :value="team" class="team-a-name">{{team}}</option>
 			</select>
 			<input type="color" class="colorpicker" id="colorpicker-team-a">
 		</div>
@@ -35,9 +35,9 @@
 		</div>
 		<div class="name-color">
 			<input type="color" class="colorpicker" id="colorpicker-team-b">
-			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-b">
+			<select onclick="App.getTeams().then(r => App.teams = r)" name="" class="team-b" v-model="team_b" v-on:change="setIMG('team-b')">
 				<option value="" disabled selected>Select team</option>
-				<option v-for="team in teams" value="" onclick="setIMG(this)" class="team-b-name">{{team}}</option>
+				<option v-for="team in teams" :value="team" class="team-b-name">{{team}}</option>
 			</select>
 		</div>
 	</div>
@@ -76,6 +76,8 @@
 		el: '#container',
 		data: {
 			teams: [],
+			team_a:"",
+			team_b:""
 		},
 		methods: {
 			getTeams: async function(){
@@ -111,6 +113,22 @@
 				let Mapscope = Vue.extend(obj);
 				let elem = new Mapscope().$mount();
 				document.getElementById('mapscopes').appendChild(elem.$el);
+			},
+			setIMG: async function(elem){
+				var className = elem;
+				var teamName = document.getElementsByClassName(className)[0];
+				teamName = teamName.options[teamName.selectedIndex].text;
+				var imgDOM = document.getElementsByClassName(className+'-img')[0];
+				console.log(teamName)
+				imgDOM.setAttribute('src', `/ver2OctoleagueBundle/teamImg/${teamName}`);
+
+				let colors = await receiveColors();
+
+				console.log(colors);
+
+				document.getElementById(`colorpicker-${className}`).value = colors[teamName].primary.toLowerCase();
+				App.getTeams().then(res => App.teams = res);
+				console.log(teamName, colors[teamName])
 			}
 		},
 	});
