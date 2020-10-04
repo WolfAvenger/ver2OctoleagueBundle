@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		function getList(){
+			let list = document.getElementById('list')
+				.value.split('\n');
+			console.log(list);
+
+			nodecg.sendMessage('tossLoad', {
+				allTeams: list
+			})
+			document.querySelector('#load').disabled = true;
+			setTimeout(() => {
+				document.querySelector('#load').disabled = false;
+			}, 10000)
+			return list;
+		}
+	</script>
+</head>
+<body>
+<textarea id="list" cols="30" rows="8" wrap="off"></textarea>
+<button id="load" onclick="getList()">Load</button>
+<button id="choose" onclick="nodecg.sendMessage('doToss', {})">Choose</button>
+
+
+</body>
+</html>

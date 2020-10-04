@@ -1,138 +1,59 @@
-const colors = {
-	"Carpe Diem": "#8347c1",
-	"Press W": "#ff1c26",
-	"F30" : "#620404",
-	"KnivesOut": "#ff551b",
-	"Modern Renegades": "#fffaff",
-	"Phoenix" : "#ff9705",
-	"Team Useless Tongue": "#ff4ba1",
-	"Truly Cake": "#383838",
-	"White Dragon": "#7f7f7f",
-	"Tale Quale": "#1349a8",
-	"Cura te ipsum": "#f2bf28",
-	"Oniel": "#8191aa",
-	"Strike Champagne": "#4d7a43",
-	"Svintus.PRO": "#eb7007",
-	"Memento Mori": "#75a6e0",
-	"OCTAHOR": "#8d6e3f",
-	"Fire of Mercy": "#d1dc1b",
-	"A.W.A.": "#05f9fc",
-	"Team Fury": "#aAaAaA",
-	"Кавай Десу Сугой Чан": "#ffa1ec"
-};
-
-const sleep = (milliseconds) => {
-	return new Promise(resolve => setTimeout(resolve, milliseconds))
-};
-
-function shuffle(array){
-	for (let i = array.length - 1; i > 0; i--) {
-		let j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-	return array;
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-let teams = ["Oniel", "OCTAHOR",
-	"Strike Champagne",	"Phoenix",
-	"Team Useless Tongue", "Cura te ipsum",
-	"Svintus.PRO", "Memento Mori", "Fire of Mercy", "A.W.A.",
-	 "Team Fury"
-].sort();
-
-teams = shuffle(teams);
-
-let groups = [];
-for (let i = 0; i < 12; i++){
-	groups.push(i % 2 === 0 ? "A" : "B");
+function random(mn, mx) {
+	return Math.random() * (mx - mn) + mn;
 }
 
-let index_s = 0;
-let index = 0;
+function drawRand(t, g, rt, rg,  bool){
+	App.t_rand = t;
+	App.g_rand = g;
 
-function createDOMS(){
-	let ADOMs_p = [], BDOMs_p = [];
-	let ADOMs_i = [], BDOMs_i = [];
-	let colors_l = [], colors_r = [];
-	for (let i = 0; i < 6; i++){
-		ADOMs_p.push(document.getElementsByClassName('team-name')[i]);
-		ADOMs_i.push(document.getElementsByClassName('logo')[i]);
-		BDOMs_p.push(document.getElementsByClassName('team-name')[i + 6]);
-		BDOMs_i.push(document.getElementsByClassName('logo')[i + 6]);
-		colors_l.push(document.getElementsByClassName('color')[i]);
-		colors_r.push(document.getElementsByClassName('color')[i + 6]);
-	}
-	return [ADOMs_p, ADOMs_i, BDOMs_p, BDOMs_i, colors_l, colors_r];
-}
-
-let removeElementByValue = function(arr, elem){
-	let index = arr.indexOf(elem);
-	if (index !== -1) arr.splice(index, 1);
-};
-
-function getRandomElement(array){
-	let max = array.length - 1;
-	let index = Math.floor(Math.random() * Math.floor(max));
-
-	return array[index];
-}
-
-let index_l = 0;
-let index_r = 6;
-
-async function makeToss(teams, groups, ADOMs_p, ADOMs_i, BDOMs_p, BDOMs_i, cl, cr, document, colors){
-	if (teams.length === 0 ) return;
-	let rez = await shake(teams, groups);
-	let team = rez[0].split(' : ')[1]; //etRandomElement(teams);
-	removeElementByValue(teams, team);
-
-	let group = rez[1].split(' : ')[1]; //getRandomElement(groups);
-	removeElementByValue(groups, group);
-
-	console.log(team, group);
-
-	if (group === "A"){
-		let DOM_p = ADOMs_p.shift();
-		DOM_p.innerHTML = team;
-
-		let imgDOM = ADOMs_i.shift();
-		console.log(imgDOM);
-		imgDOM.setAttribute('src', `/my-first-bundle/teamImg/${team}`);
-
-		let colorDOM = cl.shift();
-		colorDOM.style.backgroundColor = colors[team];
-	}
-	else {
-		let DOM_p = BDOMs_p.shift();
-		DOM_p.innerHTML = team;
-
-		let imgDOM = BDOMs_i.shift();
-		imgDOM.setAttribute('src', `/my-first-bundle/teamImg/${team}`);
-
-		let colorDOM = cr.shift();
-		console.log(cr);
-		colorDOM.style.backgroundColor = colors[team];
+	if (bool) {
+		if (g === "A") {
+			App.group_a.unshift(t)
+			App.group_a.pop()
+		} else if (g === "B") {
+			App.group_b.unshift(t)
+			App.group_b.pop()
+		}
+		abs.splice(rg,1)
+		allTeams.splice(rt, 1)
 	}
 }
 
-async function shake(teams, groups){
-	let dom_t = document.getElementsByClassName('chosen')[0];
-	let dom_g = document.getElementsByClassName('group')[0];
+let abs = ['A','A','A','A','B','B','B','B'].sort(() => Math.random() - 0.5)
+let allTeams
 
-	for(let i = 0; i< 100; i++){
-		dom_t.innerHTML = `Команда : ${shuffle(teams)[0]}`;
-		dom_g.innerHTML = `Группа : ${shuffle(groups)[0]}`;
-		await sleep(30);
+nodecg.listenFor('doToss', async (data) => {
+	let count = 25;
+	console.log(allTeams)
+	let rand_T = Math.floor(random(0, allTeams.length - 1))
+	let rand_G = Math.floor(random(0, abs.length - 1))
+	let current_T = allTeams[rand_T]
+	let current_G = abs[rand_G]
+
+	for (let i = 0; i < count; i++){
+		rand_T = Math.floor(random(0, allTeams.length - 1))
+		rand_G = Math.floor(random(0, abs.length - 1))
+		current_T = allTeams[rand_T]
+		current_G = abs[rand_G]
+		await sleep(100)
+		drawRand(current_T, current_G, rand_T, rand_G, false);
+
 	}
+	console.log(current_T, current_G)
+	await sleep(4000)
+	drawRand(current_T, current_G, rand_T, rand_G, true);
+})
 
-	return [dom_t.innerHTML, dom_g.innerHTML];
-}
-
-nodecg.listenFor('toss', (data) => {
-	console.log(d);
-	makeToss(teams, groups, d[0],d[1],d[2],d[3],d[4], d[5], document, colors);
-});
-
-
+nodecg.listenFor('tossLoad', async(data) => {
+	allTeams = data.allTeams.sort(() => Math.random() - 0.5)
+	for (let i =0 ; i<Math.ceil(allTeams.length / 2); i++){
+		App.group_a.push('')
+		App.group_b.push('')
+	}
+})
 
 

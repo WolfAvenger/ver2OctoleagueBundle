@@ -4,108 +4,77 @@
     <meta charset="UTF-8">
     <title>Toss</title>
 	<script src="toss.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<link rel="stylesheet" href="toss.css">
 </head>
 <body>
-<!--<video autoplay muted loop id="myVideo">
-	<source src="/my-first-bundle/bg" type="video/mp4">
-</video>-->
-<div class="header">
-	<p class="chosen">Команда : </p>
-	<p class="group">Группа : </p>
+
+<div class="video">
+	<video autoplay="" muted="" loop="" id="myVideo">
+		<source src="/ver2OctoleagueBundle/bg" type="video/mp4" >
+	</video>
 </div>
-<div class="groups-handler">
-	<div class="group-a">
-		<p>Группа А</p>
-		<div class="team team1">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
+
+<div id="container">
+	<div class="lotto">
+		<div class="lotto__teamname">
+			<div class="team-label">
+				<div class="skewer skewer-left"></div>
+				<div class="lotto__team-img">
+					<img :src=`/ver2OctoleagueBundle/teamImg/${t_rand}` alt="" class="lotto__teamlogo">
+				</div>
+				<span class="lotto-teamname">{{t_rand}}</span>
+				<div class="skewer skewer-right"></div>
 			</div>
-			<p class="team-name">TBD</p>
 		</div>
-		<div class="team team2">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team3">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team4">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team5">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team6">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
+		<div class="lotto__teamgroup">
+			<div class="skewer skewer-left"></div>
+			<span class="lotto-teamgroup">{{g_rand}}</span>
+			<div class="skewer skewer-right"></div>
 		</div>
 	</div>
-	<div class="group-b">
-		<p>Группа B</p>
-		<div class="team team1">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
+
+	<div class="groups">
+		<div class="group group-a">
+			<span class="groupname g-a">Group A</span>
+			<template  v-for="team in group_a">
+				<div class="team-label">
+					<div class="skewer skewer-left"></div>
+					<div class="lotto__team-img">
+						<img :src=`/ver2OctoleagueBundle/teamImg/${team}` alt="" class="lotto__teamlogo">
+					</div>
+					<span class="lotto-teamname">{{team}}</span>
+					<div class="skewer skewer-right"></div>
+				</div>
+			</template>
 		</div>
-		<div class="team team2">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team3">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team4">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team5">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
-		</div>
-		<div class="team team6">
-			<div class="color"></div>
-			<div class="logodiv">
-				<img src="/my-first-bundle/teamImg/TBD" alt="" class="logo">
-			</div>
-			<p class="team-name">TBD</p>
+		<div class="group group-b">
+			<span class="groupname g-b">Group B</span>
+			<template  v-for="team in group_b">
+				<div class="team-label">
+					<div class="skewer skewer-left"></div>
+					<div class="lotto__team-img">
+						<img :src=`/ver2OctoleagueBundle/teamImg/${team}` alt="" class="lotto__teamlogo">
+					</div>
+					<span class="lotto-teamname">{{team}}</span>
+					<div class="skewer skewer-right"></div>
+				</div>
+			</template>
 		</div>
 	</div>
 </div>
-<script>let d = createDOMS();</script>
+
+<script>
+	let App = new Vue({
+		el: '#container',
+		data:{
+			group_a:[],
+			group_b:[],
+			t_rand: "",
+			g_rand: ""
+		}
+	});
+</script>
+
 </body>
 </html>

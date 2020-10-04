@@ -3,114 +3,143 @@
 	src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot"); src: url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.woff") format("woff"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/684c94f6cc6f9deda52aa04282ab7dae.svg#BigNoodleTitlingCyr") format("svg");
 }
 
-
-body {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	justify-content: space-between;
-	align-items: center;
-	color: black;
+@font-face {
+	font-family: "Haymaker";
+	src: url("ver2OctoleagueBundle/font/Haymaker");
 }
 
-video {
+@font-face {
+	src: url("/ver2OctoleagueBundle/font/TTLakes-DemiBold");
+	font-family: "TT Lakes Demi Bold";
+}
+
+.video {
 	position: fixed;
 	top: 0;
 	left: 0;
-	/*min-width: 100%;*/
-	/*min-height: 100%;*/
 	width: 100%;
-	min-height: 100%;
+	height: 100%;
 	transform: scale(1.3);
 	z-index: -200;
+	filter: brightness(60%) hue-rotate(60deg);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
 }
 
-.header{
+
+body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	font-family: "TT Lakes Demi Bold", sans-serif;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+
+.lotto {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	width: 100%;
-	font-family: "BigNoodleTitlingCyr", serif;
+	width: 80%;
+	margin-top: 50px;
+}
+
+.team-label, .lotto__teamgroup {
+	border-radius: 7px;
+	border: 1px solid black;
+	transform: skewX(-20deg);
+	height: 54pt;
+	/*background-image: url("https://image.freepik.com/free-vector/seamless-industrial-metal-carbon-texture_79145-111.jpg");*/
+	background-color: #54575C;
 	font-size: 28pt;
-}
-
-.chosen, .group {
-	width: 40%;
-	text-align: left;
-	font-size: 34pt;
-}
-
-.group-a p, .group-b p{
-	font-size: 34pt;
-}
-
-.group {width: auto;}
-
-.groups-handler{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-start;
-	width: 100%;
-	height: 75%;
-}
-
-.group-a, .group-b{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: flex-start;
-	width: 45%;
-	height: 70%;
-	font-family: "BigNoodleTitlingCyr", serif;
-	font-size: 26pt;
-	text-align: center;
-}
-.group-a .team {
-	flex-direction: row-reverse;
-}
-
-.team {
-	width: 100%;
-	height: 16.6%;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	border: 1px solid white;
-	background-color: #432948;
-	color: white;
 }
 
-.logodiv {
-	width: 20%;
-	height: 70%;
+.team-label{ width: 40vw;}
+
+.lotto__team-img{
+	background-color: white;
+	height: 95%;
+	width: 100px;
+	margin: 0 30px 0 5px;
+	border: 1px solid transparent;
+	border-radius: 7px;
+	z-index: 10;
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 }
+.lotto-teamname{
+	z-index: 10;
+}
 
-.logodiv img {
-	/*width: 100%;*/
-	height: 120px;
-	padding: 0 5px;
+.lotto__teamlogo{
+	transform: skewX(20deg);
+	height: 100%;
+	width: auto;
+}
+
+.skewer{
+	width: 5px;
+	height: 100%;
+	background-color: chocolate;
+	position: absolute;
+	top:0;
+	z-index: 5;
+}
+.skewer-left{
+	left:0;
+	border-radius: 7px 0 0 7px;
+}
+.skewer-right{
+	right:0;
+	border-radius: 0 7px 7px 0;
+}
+
+.lotto__teamgroup{
+	width: 100px;
+	justify-content: center;
 }
 
 
-.team-name {
-	margin:0 5%;
-	font-family: "BigNoodleTitlingCyr", serif;
-	font-size: 26pt;
+.groups{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 95vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 75vh;
 }
 
-.group-a>p{
-	align-self: flex-end;
+.group {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 80%;
+	width: 45%;
 }
 
-.color {
-	width: 6px;
-	height: 2.5em;
+.groupname{
+	color: white;
+	font-size: 28pt;
 }
