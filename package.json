@@ -51,14 +51,6 @@
         "height": 3,
         "file": "Pairstats/pairstats.html",
         "headerColor": "#5C5F78"
-      },
-      {
-        "name": "panel-toss",
-        "title": "Toss panel",
-        "width": 3,
-        "height": 3,
-        "file": "Toss/toss.html",
-        "headerColor": "#5C5F78"
       }
     ],
     "graphics": [

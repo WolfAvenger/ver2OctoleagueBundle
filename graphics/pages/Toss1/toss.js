@@ -35,8 +35,8 @@ nodecg.listenFor('doToss', async (data) => {
 	let current_G = abs[rand_G]
 
 	for (let i = 0; i < count; i++){
-		rand_T = Math.floor(random(0, allTeams.length - 1))
-		rand_G = Math.floor(random(0, abs.length - 1))
+		rand_T = Math.round(random(0, allTeams.length - 1))
+		rand_G = Math.round(random(0, abs.length - 1))
 		current_T = allTeams[rand_T]
 		current_G = abs[rand_G]
 		await sleep(100)

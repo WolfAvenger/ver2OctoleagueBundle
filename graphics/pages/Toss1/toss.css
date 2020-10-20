@@ -5,11 +5,11 @@
 
 @font-face {
 	font-family: "Haymaker";
-	src: url("ver2OctoleagueBundle/font/Haymaker");
+	src: url("http://18.222.151.94/ver2OctoleagueBundle/font/Haymaker");
 }
 
 @font-face {
-	src: url("/ver2OctoleagueBundle/font/TTLakes-DemiBold");
+	src: url("http://18.222.151.94/ver2OctoleagueBundle/font/TTLakes-DemiBold");
 	font-family: "TT Lakes Demi Bold";
 }
 
