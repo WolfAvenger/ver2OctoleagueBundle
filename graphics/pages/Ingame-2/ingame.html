@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In-game overlay</title>
+	<link rel="stylesheet" href="ingame2.css">
+</head>
+<body>
+
+<!--
+<div class="svg-handler">
+		<p class="teamname teamname-left">Team A</p>
+		<img src="" alt="" id="logo-a">
+		<p class="score score-left">0</p>
+
+		<p class="stage">Stage text</p>
+
+		<p class="teamname teamname-right">Team B</p>
+		<img src="" alt="" id="logo-b">
+		<p class="score score-right">0</p>
+</div>
+-->
+
+<div id="container">
+	<div class="plank plank-left">
+		<div class="team team-left">
+			<div class="teamName teamName-left">
+				<p>Name of team A</p>
+			</div>
+			<div class="logo logo-left">
+				<img src="./F30.png" alt="" class="logo-img">
+			</div>
+			<div class="score score-left">
+				<p>0</p>
+			</div>
+		</div>
+		<div class="side side-left">
+			<p>ATK</p>
+		</div>
+	</div>
+
+	<div class="mid"></div>
+
+	<div class="plank plank-right">
+		<div class="team team-right">
+			<div class="teamName teamName-right">
+				<p>Name of team B</p>
+			</div>
+			<div class="logo logo-right">
+				<img src="./F30.png" alt="" class="logo-img">
+			</div>
+			<div class="score score-right">
+				<p>1</p>
+			</div>
+		</div>
+		<div class="side side-right">
+			<p>DEF</p>
+		</div>
+	</div>
+</div>
+
+<script src="setTeams.js"></script>
+</body>
+</html>

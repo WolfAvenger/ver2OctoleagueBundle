@@ -1,0 +1,173 @@
+@font-face {
+	src: url("./BigNoodleTitling.ttf");
+	font-family: "TT Lakes Demi Bold";
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	--item-width: 70px;
+	--plank-width: 36.55vw;
+	--plank-margin: 3.25vw;
+	--color-ow-blue: #4395b6;
+	--color-ow-red: #ba1d31;
+	--skew-left: -15deg;
+	--skew-right: 15deg;
+}
+
+body {
+	width: 100%;
+	background-image: url("./back.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: "TT Lakes Demi Bold", serif;
+	text-transform: uppercase;
+}
+
+#container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 3.5vh;
+}
+
+.plank {
+	display: flex;
+	align-items: center;
+	width: var(--plank-width);
+	height: 6vh;
+	justify-content: flex-end;
+}
+
+.plank-left {
+	flex-direction: row;
+	margin-left: var(--plank-margin);
+	transform: skewX(var(--skew-left));
+}
+
+.plank-right {
+	flex-direction: row-reverse;
+	margin-right: var(--plank-margin);
+	transform: skewX(var(--skew-right));
+}
+
+.team {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 100%;
+	width: 95%;
+	position: relative;
+}
+
+.team-left {
+	flex-direction: row;
+}
+
+.team-right {
+	flex-direction: row-reverse;
+
+}
+
+.teamName {
+	position: absolute;
+	bottom: 0;
+	background-color: white;
+	width: 76%;
+	text-align: center;
+}
+
+.teamName-left{
+	left: 0;
+	border-left: 5px solid var(--color-ow-blue);
+}
+
+.teamName-left > p,
+.logo-left > .logo-img,
+.score-left > p,
+.side-left > p{
+	transform: skewX(var(--skew-right));
+}
+
+.teamName-right > p,
+.logo-right > .logo-img,
+.score-right > p,
+.side-right > p{
+	transform: skewX(var(--skew-left));
+}
+
+.teamName-right {
+	right: 0;
+	border-right: 5px solid var(--color-ow-red);
+}
+
+.logo {
+	height: 100%;
+	width: var(--item-width);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	object-fit: cover;
+	background-color: white;
+	z-index:10;
+}
+
+.logo > .logo-img {
+	border: none;
+	height: 100%;
+}
+
+.logo-left {
+	border-left: 5px solid var(--color-ow-blue);
+}
+
+.logo-left > .logo-img {
+	transform: scale(.85) skewX(var(--skew-right));
+}
+
+.logo-right {
+	border-right: 5px solid var(--color-ow-red)
+}
+
+.logo-right > .logo-img {
+	transform: scale(.85) skewX(var(--skew-left));
+}
+
+.score {
+	width: var(--item-width);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+}
+
+.score-left {
+	border-left: 5px solid var(--color-ow-blue);
+	border-right: 5px solid var(--color-ow-blue);
+}
+
+.score-right {
+	border-left: 5px solid var(--color-ow-red);
+	border-right: 5px solid var(--color-ow-red);
+}
+
+.side {
+	height: 70%;
+	width: var(--item-width);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-start;
+}
+
+.side-left {
+	background-color: var(--color-ow-blue);
+}
+
+.side-right {
+	background-color: var(--color-ow-red);
+}
