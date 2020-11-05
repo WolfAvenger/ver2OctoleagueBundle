@@ -3,7 +3,25 @@
 	font-family: "TT Lakes Demi Bold";
 }
 
+@keyframes fadeUpOCTO {
+	100% {
+		width: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes toggleOff {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+
+@keyframes toggleOn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
 * {
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	--item-width: 70px;
@@ -13,6 +31,8 @@
 	--color-ow-red: #ba1d31;
 	--skew-left: -15deg;
 	--skew-right: 15deg;
+	--logo-scaler: .92;
+	--gradient: linear-gradient(90deg, rgba(67,149,182,1) 0%, rgba(186,29,49,1) 100%);
 }
 
 body {
@@ -38,6 +58,13 @@ body {
 	width: var(--plank-width);
 	height: 6vh;
 	justify-content: flex-end;
+}
+
+.plank, .mid, .score {
+	/*animation-name: fadeUpOCTO;
+	animation-duration: .9s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;*/
 }
 
 .plank-left {
@@ -123,7 +150,7 @@ body {
 }
 
 .logo-left > .logo-img {
-	transform: scale(.85) skewX(var(--skew-right));
+	transform: scale(var(--logo-scaler)) skewX(var(--skew-right));
 }
 
 .logo-right {
@@ -131,7 +158,7 @@ body {
 }
 
 .logo-right > .logo-img {
-	transform: scale(.85) skewX(var(--skew-left));
+	transform: scale(var(--logo-scaler)) skewX(var(--skew-left));
 }
 
 .score {
@@ -162,12 +189,49 @@ body {
 	align-items: center;
 	justify-content: center;
 	align-self: flex-start;
+	object-fit: cover;
+	border: 1px solid;
+	z-index: 20;
 }
 
 .side-left {
 	background-color: var(--color-ow-blue);
+	border-color: var(--color-ow-blue);
 }
 
 .side-right {
 	background-color: var(--color-ow-red);
+	border-color: var(--color-ow-red);
+}
+
+.side > img {
+	height: 95%;
+}
+
+.side-left > img {
+	transform: skewX(var(--skew-right));
+}
+
+.side-right > img {
+	transform: skewX(var(--skew-left));
+}
+
+.mid {
+	border-bottom: calc(0.7*6vh + 1px) solid white;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	height: 0;
+	width: 17vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+p.mid-text {
+	color: black;
+	position: absolute;
+	top: 0;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
 }

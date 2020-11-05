@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>In-game overlay</title>
-	<link rel="stylesheet" href="ingame2.css">
+	<link rel="stylesheet" href="./ingame2.css">
 </head>
 <body>
 
@@ -35,11 +35,14 @@
 			</div>
 		</div>
 		<div class="side side-left">
-			<p>ATK</p>
+			<img src="./attack.png" alt="" class="side-img">
+<!--			<p>ATK</p>-->
 		</div>
 	</div>
 
-	<div class="mid"></div>
+	<div class="mid">
+		<p class="mid-text">KEKW дважды кекв</p>
+	</div>
 
 	<div class="plank plank-right">
 		<div class="team team-right">
@@ -54,11 +57,30 @@
 			</div>
 		</div>
 		<div class="side side-right">
-			<p>DEF</p>
+			<img alt="" class="side-img" src="./defence.png">
+<!--			<p>DEF</p>-->
 		</div>
 	</div>
 </div>
 
 <script src="setTeams.js"></script>
+<script>
+	const mids = ['1st text','2nd text','3rd text']
+	function setAnimationToDOM(query, name){
+		document.querySelector(query)
+			.style.animationName = name;
+	}
+	let i = 0;
+
+	setInterval(() => {
+		setAnimationToDOM('.mid-text', 'toggleOff')
+		setTimeout(() => {
+			document.querySelector('.mid-text')
+			.innerHTML = mids[i++ % 3]
+			setAnimationToDOM('.mid-text', 'toggleOn')
+		}, 900)
+	}, 5000)
+
+</script>
 </body>
 </html>
